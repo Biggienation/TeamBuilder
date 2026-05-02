@@ -2,14 +2,24 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="app" />
+      </profile>
+      <profile name="Annotation profile for TeamBuilder" enabled="true">
+        <sourceOutputDir name="app/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="app/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="TeamBuilder" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="app" target="21" />
       <module name="app.main" target="21" />
       <module name="app.test" target="21" />
       <module name="gui-api" target="1.8" />
@@ -17,6 +27,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="TeamBuilder" options="-parameters" />
       <module name="app" options="-parameters" />
       <module name="app.main" options="-parameters" />
       <module name="app.test" options="-parameters" />

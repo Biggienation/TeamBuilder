@@ -19,16 +19,15 @@ public class DataInitializer {
     public void initializeData() {
         // Check if data already exists
         if (characterRepository.count() == 0) {
-            Character ch1 = new Character("1", "Warrior", "S", 10, "Tank", "/images/warrior.jpg", "A powerful warrior");
-            Character ch2 = new Character("2", "Mage", "A", 8, "DPS", "/images/mage.jpg", "Master of spells");
-            Character ch3 = new Character("3", "Rogue", "A", 9, "DPS", "/images/rogue.jpg", "Quick and deadly");
-            Character ch4 = new Character("4", "Paladin", "S", 10, "Support", "/images/paladin.jpg", "Holy protector");
-            Character ch5 = new Character("5", "Ranger", "B", 7, "DPS", "/images/ranger.jpg", "Master of ranged combat");
-            Character ch6 = new Character("6", "Priest", "B", 6, "Support", "/images/priest.jpg", "Bearer of restoration");
-            Character ch7 = new Character("7", "Druid", "A", 8, "Hybrid", "/images/druid.jpg", "Nature's guardian");
+            Character anaxa = new Character("1", "Anaxa", "SS", "5-star", "Wind", "Erudition","Sub-DPS","https://img.game8.co/4105938/a7a620b0c9969474e506afc27d57874b.png/show", "test");
+            Character castorice = new Character("2", "Castorice", "SS", "5-star", "Quantum", "Remembrance","Main-DPS","https://img.game8.co/4104674/c7d4833be32744623796e69cd8955443.png/show", "test");
+            Character tribbie = new Character("3", "Tribbie", "SS", "5-star", "Quantum", "Harmony","Support","https://img.game8.co/4074798/ca2244bb4304b47283f0c7d2593a404c.png/show", "test");
+            Character mydei = new Character("4", "Mydei", "S", "5-star", "Imaginary", "Destruction","Sub-DPS","https://img.game8.co/4074811/d8f806b8713b2d167e2671c4b99278e7.png/show", "test");
+            Character theHerta = new Character("5", "The Herta", "SS", "5-star", "Ice", "Erudition","Main-DPS","https://img.game8.co/4044949/9986df56ea421e73acd7201b3efe5a22.png/show", "test");
+            Character acheron = new Character("6", "Acheron", "S", "5-star", "Lightning", "Nihility","Main-DPS","https://img.game8.co/3899367/9cedf24bc0ce960e0b3973250dd28c76.png/show", "test");
+            Character himeko = new Character("7", "Himeko", "A", "5-star", "Fire", "Erudition","Sub-DPS","https://img.game8.co/3899451/579d23b3f6ec047cf5ace13a5d17720c.png/show", "test");
 
-            characterRepository.saveAll(Arrays.asList(ch1, ch2, ch3, ch4, ch5, ch6, ch7));
+            characterRepository.saveAll(Arrays.asList(anaxa, castorice, tribbie, mydei, theHerta, acheron, himeko));
         }
     }
 }
-

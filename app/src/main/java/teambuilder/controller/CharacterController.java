@@ -37,7 +37,7 @@ public class CharacterController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Character> updateCharacter(@PathVariable String id, @RequestBody Character character) {
-        Character updated = characterService.updateCharacter(id, character);
+        Character updated = characterService.updateCharacter(character);
         return ResponseEntity.ok(updated);
     }
 
@@ -65,4 +65,3 @@ public class CharacterController {
         return ResponseEntity.ok(characters);
     }
 }
-

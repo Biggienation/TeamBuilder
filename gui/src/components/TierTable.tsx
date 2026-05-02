@@ -8,14 +8,16 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
 import Chance from 'chance';
+import {useEffect} from "react";
+import {getCharacters} from "../services/api";
+import {CircularProgress, Typography} from "@mui/material";
 
 interface Data {
-    id: number;
-    firstName: string;
-    lastName: string;
-    age: number;
-    phone: string;
-    state: string;
+    name: string;
+    tier: string;
+    rarity: string;
+    element: string;
+    path: string;
 }
 
 interface ColumnData {
@@ -25,49 +27,50 @@ interface ColumnData {
     width?: number;
 }
 
-const chance = new Chance(42);
-
-function createData(id: number): Data {
-    return {
-        id,
-        firstName: chance.first(),
-        lastName: chance.last(),
-        age: chance.age(),
-        phone: chance.phone(),
-        state: chance.state({ full: true }),
-    };
-}
+const fetchCharacters = async () => {
+    try {
+        const data = await getCharacters();
+        return data.map((ch: any) => ({
+            name: ch.name,
+            tier: ch.tier,
+            rarity: ch.rarity,
+            element: ch.element,
+            path: ch.path,
+        }));
+    } catch (err) {
+        return []
+    }
+};
 
 const columns: ColumnData[] = [
     {
         width: 100,
-        label: 'First Name',
-        dataKey: 'firstName',
+        label: 'Name',
+        dataKey: 'name',
     },
     {
         width: 100,
-        label: 'Last Name',
-        dataKey: 'lastName',
+        label: 'Tier',
+        dataKey: 'tier',
     },
     {
-        width: 50,
-        label: 'Age',
-        dataKey: 'age',
-        numeric: true,
+        width: 100,
+        label: 'Rarity',
+        dataKey: 'rarity',
     },
     {
-        width: 110,
-        label: 'State',
-        dataKey: 'state',
+        width: 100,
+        label: 'Element',
+        dataKey: 'element',
     },
     {
-        width: 130,
-        label: 'Phone Number',
-        dataKey: 'phone',
+        width: 100,
+        label: 'Path',
+        dataKey: 'path',
     },
 ];
 
-const rows: Data[] = Array.from({ length: 200 }, (_, index) => createData(index));
+const rows: Data[] = await fetchCharacters();
 
 const VirtuosoTableComponents: TableComponents<Data> = {
     Scroller: React.forwardRef<HTMLDivElement>((props, ref) => (
@@ -86,6 +89,7 @@ const VirtuosoTableComponents: TableComponents<Data> = {
 };
 
 function fixedHeaderContent() {
+
     return (
         <TableRow>
             {columns.map((column) => (
@@ -119,6 +123,10 @@ function rowContent(_index: number, row: Data) {
 }
 
 export default function TierTable() {
+    useEffect(() => {
+        fetchCharacters();
+    }, []);
+
     return (
         <Paper style={{ height: 400, width: '100%' }}>
             <TableVirtuoso

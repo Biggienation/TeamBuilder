@@ -26,8 +26,7 @@ public class CharacterService {
         return characterRepository.save(character);
     }
 
-    public Character updateCharacter(String id, Character character) {
-        character.setId(id);
+    public Character updateCharacter(Character character) {
         return characterRepository.save(character);
     }
 
@@ -47,4 +46,3 @@ public class CharacterService {
         return characterRepository.findByName(name);
     }
 }
-
