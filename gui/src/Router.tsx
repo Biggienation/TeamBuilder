@@ -2,6 +2,9 @@ import { useStore } from './hooks';
 import Home from './views/Home';
 import Chareters from './views/Chareters';
 import Builder from './views/Builder';
+import Login from './views/Login';
+import Register from './views/Register';
+import Settings from './views/Settings';
 import { selectRootPath } from './reducers/selectors';
 import React from 'react';
 
@@ -15,6 +18,12 @@ export default function Router() {
             return <Chareters />;
         case '/builder':
             return <Builder />;
+        case '/login':
+            return <Login />;
+        case '/register':
+            return <Register />;
+        case '/settings':
+            return <Settings />;
         default:
             return <Home />;
     }

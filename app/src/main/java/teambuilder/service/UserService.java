@@ -39,11 +39,6 @@ public class UserService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setActive(true);
-        user.setCreatedAt(LocalDateTime.now());
-        user.setUpdatedAt(LocalDateTime.now());
 
         User savedUser = userRepository.save(user);
         return convertToResponse(savedUser);
@@ -104,9 +99,6 @@ public class UserService {
         }
 
         User user = userOptional.get();
-        user.setFirstName(request.getFirstName());
-        user.setLastName(request.getLastName());
-        user.setUpdatedAt(LocalDateTime.now());
 
         // Only update email if it's different and doesn't already exist
         if (!user.getEmail().equals(request.getEmail())) {
@@ -148,8 +140,7 @@ public class UserService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getFirstName(),
-                user.getLastName(),
+                user.getOwnedCharacters(),
                 user.isActive()
         );
     }

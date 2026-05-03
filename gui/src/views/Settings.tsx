@@ -1,9 +1,11 @@
 import React from "react";
 
-function Profile() {
+function Settings() {
   return (
     <div className="Profile">
-      <h1>Profile</h1>
+      <h1>Settings</h1>
     </div>
   );
 }
+
+export default Settings;

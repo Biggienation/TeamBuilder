@@ -1,6 +1,7 @@
 import {Card, CardActionArea, CardContent, Grid, Paper, CircularProgress, Typography, CardMedia} from "@mui/material";
 import React, { useEffect } from "react";
 import { getCharacters, Character } from "../services/characterApi";
+import GreenSpacer from "components/GreenSpacer";
 
 const ChHeight = { xs: 80, sm: 100, md: 125, lg: 150 }
 const ChWidth = { xs: 70, sm: 90, md: 110, lg: 125 }
@@ -47,10 +48,10 @@ export default function Chareters() {
 
     return (
         <Paper elevation={1} sx={{ padding: 2 }}>
-            <Grid container spacing={0.5} columns={5}>
+            <Grid container spacing={0.5}>
                 {characters.map((ch) => (
                     <Grid key={ch.id} size={1} >
-                        <Card sx={{border: '1px solid black', height: ChHeight, width: ChWidth}}>
+                        <Card sx={{height: ChHeight, width: ChWidth}}>
                             <CardActionArea
                                 onClick={() => {
                                     setSelectedCards((prev) =>
@@ -75,6 +76,7 @@ export default function Chareters() {
                                 <CardContent>
                                     {ch.name}
                                 </CardContent>
+                                <GreenSpacer/>
                             </CardActionArea>
                         </Card>
                     </Grid>

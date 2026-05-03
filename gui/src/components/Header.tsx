@@ -12,14 +12,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import { useStore } from '../hooks';
-import { selectRootPath } from '../reducers/selectors';
+import { selectRootPath, selectUser } from '../reducers/selectors';
 import AdbIcon from '@mui/icons-material/Adb';
 
 const pages = ['Home', 'Chareters', 'Builder'];
-const settings = ['Profile', 'Settings', 'Logout'];
+const authenticatedSettings = ['Settings', 'Settings', 'Logout'];
+const unauthenticatedSettings = ['Login', 'Register'];
 
 function Header() {
   const [, dispatch] = useStore(selectRootPath);
+  const [user] = useStore(selectUser);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -42,6 +44,23 @@ function Header() {
     setAnchorElUser(null);
   };
 
+  const handleLogout = () => {
+    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: 'SET_ROOT_PATH', payload: '/home' });
+    handleCloseUserMenu();
+  };
+
+  const handleSettings = (setting: string) => {
+    if (setting === 'Logout') {
+      handleLogout();
+    } else {
+      handleNav('/' + setting.toLowerCase());
+      handleCloseUserMenu();
+    }
+  };
+
+  const settings = user ? authenticatedSettings : unauthenticatedSettings;
+
   return (
     <AppBar position="static" color={"default"} >
       <Container maxWidth="xl">
@@ -58,11 +77,11 @@ function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
+              color: '#7E8C54',
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Team Builder
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -111,7 +130,7 @@ function Header() {
           </Box>
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ...(user ? { border: '2px solid #7E8C54' } : {}) }}>
                 <PersonIcon />
               </IconButton>
             </Tooltip>
@@ -132,7 +151,7 @@ function Header() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => { handleCloseUserMenu(); handleNav('/' + setting.toLowerCase()); }}>
+                <MenuItem key={setting} onClick={() => handleSettings(setting)}>
                   <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
                 </MenuItem>
               ))}
@@ -155,7 +174,7 @@ function Header() {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Team Builder
           </Typography>
         </Toolbar>
       </Container>

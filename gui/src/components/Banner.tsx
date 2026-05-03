@@ -7,10 +7,13 @@ export function Banner() {
     position: 'relative',
     marginBottom: '20px',
     width: '100%',
+      display: 'flex',
+        justifyContent: 'center',
+      margin : '0  0 20px 0 ',
   };
 
   const imageStyles: React.CSSProperties = {
-    width: '100%',
+    width: '80%',
     height: 'auto',
     display: 'block',
   };

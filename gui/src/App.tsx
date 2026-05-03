@@ -2,6 +2,7 @@ import React from 'react';
 import Router from './Router';
 import Header from 'components/Header';
 import { StoreProvider } from './StoreProvider';
+import { Paper } from "@mui/material";
 
 const appStyles: React.CSSProperties = {
   textAlign: 'center',
@@ -9,7 +10,6 @@ const appStyles: React.CSSProperties = {
 
 
 const mainStyles: React.CSSProperties = {
-  padding: '20px',
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center'
@@ -23,9 +23,9 @@ const App  = () => {
           <Header />
         </header>
         <main style={mainStyles}>
-          <div style={{maxWidth: 1000, maxHeight: 'auto', border: '1px solid black'}} className="MainContent">
+          <Paper elevation={3} sx={{ width: 1500, maxWidth: 1500, height: '100dvh'}} className="MainContent">
           <Router/>
-          </div>
+          </Paper>
         </main>
       </div>
     </StoreProvider>

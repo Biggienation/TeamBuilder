@@ -277,7 +277,7 @@ Response (200 OK):
 }
 ```
 
-### 3. Get User Profile
+### 3. Get User Settings
 ```bash
 GET /api/users/507f1f77bcf86cd799439012
 
@@ -292,7 +292,7 @@ Response (200 OK):
 }
 ```
 
-### 4. Update User Profile
+### 4. Update User Settings
 ```bash
 PUT /api/users/507f1f77bcf86cd799439012
 Content-Type: application/json

@@ -21,18 +21,16 @@ const homeDescriptionStyles: React.CSSProperties = {
 function Home() {
   return (
       <>
+          <GreenSpacer/>
+          <div style={{margin : "10px"}}/>
+          <div style={homeContainerStyles}>
+              <h2 style={homeTitleStyles}>Welcome to TeamBuilder</h2>
+              <p style={homeDescriptionStyles}> Manage and organize your teams efficiently.</p>
+          </div>
+          <GreenSpacer/>
+          <div style={{margin : "10px"}}/>
         <Banner/>
-
           <GreenSpacer/>
-          <div style={{margin : "10px"}}/>
-        <div style={homeContainerStyles}>
-          <h2 style={homeTitleStyles}>Welcome to TeamBuilder</h2>
-          <p style={homeDescriptionStyles}> Manage and organize your teams efficiently.</p>
-        </div>
-
-          <GreenSpacer/>
-          <div style={{margin : "10px"}}/>
-
         <TierTable/>
       </>
   );

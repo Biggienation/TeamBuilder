@@ -4,6 +4,7 @@ import teambuilder.dto.UserLoginRequest;
 import teambuilder.dto.UserRegistrationRequest;
 import teambuilder.dto.UserResponse;
 import teambuilder.service.UserService;
+import teambuilder.config.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private JwtUtil jwtUtil;
 
     /**
      * Register a new user
@@ -44,9 +48,11 @@ public class UserController {
     public ResponseEntity<?> loginUser(@RequestBody UserLoginRequest request) {
         try {
             UserResponse user = userService.authenticateUser(request.getUsername(), request.getPassword());
+            String token = jwtUtil.generateToken(user.getUsername());
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Login successful");
             response.put("user", user);
+            response.put("token", token);
             return ResponseEntity.ok(response);
         } catch (Exception e) {
             Map<String, String> error = new HashMap<>();

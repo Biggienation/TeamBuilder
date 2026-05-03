@@ -2,12 +2,15 @@ package teambuilder.config;
 
 import teambuilder.model.Character;
 import teambuilder.model.Team;
+import teambuilder.model.User;
 import teambuilder.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import teambuilder.repository.TeamRepository;
+import teambuilder.repository.UserRepository;
 
 import java.util.Arrays;
 
@@ -18,9 +21,23 @@ public class DataInitializer {
     private CharacterRepository characterRepository;
     @Autowired
     private TeamRepository teamRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @EventListener(ApplicationReadyEvent.class)
     public void initializeData() {
+        // Initialize test user
+        if (!userRepository.existsByUsername("admin")) {
+            User adminUser = new User();
+            adminUser.setUsername("admin");
+            adminUser.setEmail("admin@test.com");
+            adminUser.setPassword(passwordEncoder.encode("test"));
+            adminUser.setActive(true);
+            userRepository.save(adminUser);
+        }
+
         // Check if data already exists
         Character anaxa = new Character("1", "Anaxa", "SS", "5-star", "Wind", "Erudition","Sub-DPS","https://img.game8.co/4105938/a7a620b0c9969474e506afc27d57874b.png/show", "test");
         Character castorice = new Character("2", "Castorice", "SS", "5-star", "Quantum", "Remembrance","Main-DPS","https://img.game8.co/4104674/c7d4833be32744623796e69cd8955443.png/show", "test");
@@ -35,7 +52,7 @@ public class DataInitializer {
         Team theHertaTeam = new Team("1", "The Herta Team", "test", theHerta, anaxa, tribbie, hyacine);
 
         if (characterRepository.count() == 0) {
-            characterRepository.saveAll(Arrays.asList(anaxa, castorice, tribbie, mydei, theHerta, acheron, himeko));
+            characterRepository.saveAll(Arrays.asList(anaxa, castorice, tribbie, mydei, theHerta, acheron, himeko, hyacine));
         }
 
         if (teamRepository.count() == 0) {
