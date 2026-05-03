@@ -12,7 +12,7 @@
 - [x] Created `application.properties` (MongoDB config on port 8080)
 
 ## Frontend Integration ✅
-- [x] Created `api.ts` (typed API service layer)
+- [x] Created `characterApi.ts` (typed API service layer)
 - [x] Created `.env` (API URL configuration)
 - [x] Updated `Chareters.tsx` to fetch from API
 - [x] Added loading spinner during fetch
@@ -82,7 +82,7 @@ Visit: **http://localhost:8080**
 - /app/src/main/java/teambuilder/controller/CharacterController.java
 - /app/src/main/java/teambuilder/config/DataInitializer.java
 - /app/src/main/resources/application.properties
-- /gui/src/services/api.ts
+- /gui/src/services/characterApi.ts
 - /gui/.env
 - /SETUP.md
 - /GETTING_STARTED.md
@@ -93,4 +93,3 @@ Visit: **http://localhost:8080**
 ---
 
 **All done! Your full-stack application is ready. 🎉**
-

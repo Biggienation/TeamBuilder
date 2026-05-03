@@ -7,10 +7,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
-import Chance from 'chance';
 import {useEffect} from "react";
-import {getCharacters} from "../services/api";
-import {CircularProgress, Typography} from "@mui/material";
+import {getCharacters} from "../services/characterApi";
 
 interface Data {
     name: string;

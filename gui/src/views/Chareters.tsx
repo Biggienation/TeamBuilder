@@ -1,6 +1,6 @@
 import {Card, CardActionArea, CardContent, Grid, Paper, CircularProgress, Typography, CardMedia} from "@mui/material";
 import React, { useEffect } from "react";
-import { getCharacters, Character } from "../services/api";
+import { getCharacters, Character } from "../services/characterApi";
 
 const ChHeight = { xs: 80, sm: 100, md: 125, lg: 150 }
 const ChWidth = { xs: 70, sm: 90, md: 110, lg: 125 }

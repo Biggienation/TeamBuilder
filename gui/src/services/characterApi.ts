@@ -6,7 +6,9 @@ export interface Character {
   id: string;
   name: string;
   tier: string;
-  level: number;
+  rarity: string;
+  element: string;
+  path: string;
   role: string;
   imageUrl?: string;
   description?: string;
@@ -128,4 +130,3 @@ export const searchCharactersByName = async (name: string): Promise<Character[]>
     throw error;
   }
 };
-

@@ -13,7 +13,7 @@
 ✅ `application.properties` - MongoDB & server config (port 8080)
 
 ### Frontend (React + TypeScript)
-✅ `api.ts` - API service layer with typed interfaces
+✅ `characterApi.ts` - API service layer with typed interfaces
 ✅ `.env` - Environment configuration
 ✅ `Chareters.tsx` - Updated to fetch from API with loading states
 
@@ -57,4 +57,3 @@ Access at: **http://localhost:8080**
 
 ## Sample Data
 7 characters auto-loaded on startup (Warrior, Mage, Rogue, etc.)
-
