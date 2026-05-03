@@ -1,6 +1,6 @@
 import React from 'react';
 import Router from './Router';
-import Header from './views/Header';
+import Header from 'components/Header';
 import { StoreProvider } from './StoreProvider';
 
 const appStyles: React.CSSProperties = {

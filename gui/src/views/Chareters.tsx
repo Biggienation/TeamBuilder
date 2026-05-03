@@ -12,7 +12,7 @@ export default function Chareters() {
     const [error, setError] = React.useState<string | null>(null);
 
     useEffect(() => {
-        fetchCharacters();
+        fetchCharacters().then();
     }, []);
 
     const fetchCharacters = async () => {

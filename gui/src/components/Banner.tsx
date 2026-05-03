@@ -15,20 +15,20 @@ export function Banner() {
     display: 'block',
   };
 
-  const triangleStyles: React.CSSProperties = {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    backgroundColor: 'white',
-         clipPath: 'polygon(0 100%, 100% 100%, 100% 0)',
-  };
+  // const triangleStyles: React.CSSProperties = {
+  //   position: 'absolute',
+  //   top: 0,
+  //   left: 0,
+  //   width: '100%',
+  //   height: '100%',
+  //   backgroundColor: 'white',
+  //        clipPath: 'polygon(0 100%, 100% 100%, 100% 0)',
+  // };
 
   return (
     <div className="banner" style={bannerContainerStyles}>
       <img src={sparkleBanner} alt="Sparkle Banner" style={imageStyles} />
-      <div style={triangleStyles}></div>
+      {/*<div style={triangleStyles}></div>*/}
     </div>
   );
 }
