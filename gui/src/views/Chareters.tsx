@@ -1,4 +1,4 @@
-import {Card, CardActionArea, CardContent, Grid, Paper, CircularProgress, Typography} from "@mui/material";
+import {Card, CardActionArea, CardContent, Grid, Paper, CircularProgress, Typography, CardMedia} from "@mui/material";
 import React, { useEffect } from "react";
 import { getCharacters, Character } from "../services/api";
 
@@ -68,6 +68,10 @@ export default function Chareters() {
                                     },
                                 }}
                             >
+                                <CardMedia
+                                    sx={{ height: '70%', objectFit: 'contain' }}
+                                image={ch.imageUrl}
+                                />
                                 <CardContent>
                                     {ch.name}
                                 </CardContent>

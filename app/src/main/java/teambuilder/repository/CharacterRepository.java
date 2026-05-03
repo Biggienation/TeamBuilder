@@ -10,6 +10,7 @@ import java.util.List;
 public interface CharacterRepository extends MongoRepository<Character, String> {
     List<Character> findByName(String name);
     List<Character> findByTier(String tier);
+    List<Character> findByElement(String element);
+    List<Character> findByRarity(String rarity);
     List<Character> findByRole(String role);
 }
-

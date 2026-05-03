@@ -45,4 +45,12 @@ public class CharacterService {
     public List<Character> findByName(String name) {
         return characterRepository.findByName(name);
     }
+
+    public List<Character> findByElement(String element) {
+        return characterRepository.findByElement(element);
+    }
+
+    public List<Character> findByRarity(String rarity) {
+        return characterRepository.findByRarity(rarity);
+    }
 }

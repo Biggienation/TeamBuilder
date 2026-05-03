@@ -64,4 +64,16 @@ public class CharacterController {
         List<Character> characters = characterService.findByName(name);
         return ResponseEntity.ok(characters);
     }
+
+    @GetMapping("/element/{element}")
+    public ResponseEntity<List<Character>> getCharactersByElement(@PathVariable String element) {
+        List<Character> characters = characterService.findByElement(element);
+        return ResponseEntity.ok(characters);
+}
+
+    @GetMapping("/rarity/{rarity}")
+    public ResponseEntity<List<Character>> getCharactersByRarity(@PathVariable String rarity) {
+        List<Character> characters = characterService.findByRarity(rarity);
+        return ResponseEntity.ok(characters);
+    }
 }
