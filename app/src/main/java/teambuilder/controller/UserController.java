@@ -126,6 +126,25 @@ public class UserController {
     }
 
     /**
+     * Save user's owned characters
+     * POST /api/users/{id}/owned-characters
+     */
+    @PostMapping("/{id}/owned-characters")
+    public ResponseEntity<?> saveOwnedCharacters(@PathVariable String id, @RequestBody List<String> characterNames) {
+        try {
+            UserResponse user = userService.saveOwnedCharacters(id, characterNames);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "Owned characters saved successfully");
+            response.put("user", user);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        }
+    }
+
+    /**
      * Delete user
      * DELETE /api/users/{id}
      */

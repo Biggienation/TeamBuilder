@@ -7,6 +7,7 @@ export interface User {
   firstName?: string;
   lastName?: string;
   active: boolean;
+  ownedCharacters?: string[];
 }
 
 export interface LoginRequest {
@@ -89,6 +90,19 @@ export const userApi = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to fetch user');
+    }
+    return response.json();
+  },
+
+  saveOwnedCharacters: async (userId: string, characterNames: string[]): Promise<any> => {
+    const response = await fetch(`${API_BASE_URL}/users/${userId}/owned-characters`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify(characterNames),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to save owned characters');
     }
     return response.json();
   },

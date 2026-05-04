@@ -1,6 +1,6 @@
 # TeamBuilder - React + Spring Boot + MongoDB
 
-A full-stack web application for managing teams and characters with a React frontend and Spring Boot backend.
+A full-stack web application for managing teams and fullCharacterModels with a React frontend and Spring Boot backend.
 
 ## Project Structure
 
@@ -79,7 +79,7 @@ The backend will be available at: **http://localhost:8080**
 
 - **Frontend**: http://localhost:8080 (served by Spring Boot)
 - **API Base URL**: http://localhost:8080/api
-- **Characters API**: http://localhost:8080/api/characters
+- **Characters API**: http://localhost:8080/api/fullCharacterModels
 
 ## Development
 
@@ -102,25 +102,25 @@ The backend automatically reloads changes due to Spring DevTools when running in
 
 ### Characters
 
-- `GET /api/characters` - Get all characters
-- `GET /api/characters/{id}` - Get character by ID
-- `POST /api/characters` - Create a new character
-- `PUT /api/characters/{id}` - Update a character
-- `DELETE /api/characters/{id}` - Delete a character
-- `GET /api/characters/tier/{tier}` - Get characters by tier
-- `GET /api/characters/role/{role}` - Get characters by role
-- `GET /api/characters/search/{name}` - Search characters by name
+- `GET /api/fullCharacterModels` - Get all fullCharacterModels
+- `GET /api/fullCharacterModels/{id}` - Get fullCharacterModel by ID
+- `POST /api/fullCharacterModels` - Create a new fullCharacterModel
+- `PUT /api/fullCharacterModels/{id}` - Update a fullCharacterModel
+- `DELETE /api/fullCharacterModels/{id}` - Delete a fullCharacterModel
+- `GET /api/fullCharacterModels/tier/{tier}` - Get fullCharacterModels by tier
+- `GET /api/fullCharacterModels/role/{role}` - Get fullCharacterModels by role
+- `GET /api/fullCharacterModels/search/{name}` - Search fullCharacterModels by name
 
 ### Example Request
 
 ```bash
-curl -X GET http://localhost:8080/api/characters
+curl -X GET http://localhost:8080/api/fullCharacterModels
 ```
 
 ### Example POST Request
 
 ```bash
-curl -X POST http://localhost:8080/api/characters \
+curl -X POST http://localhost:8080/api/fullCharacterModels \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Hero 1",
@@ -235,4 +235,3 @@ When adding new features:
 3. Create the frontend components/services
 4. Test integration with the API
 5. Run `npm run build` before committing
-

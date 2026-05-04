@@ -8,7 +8,7 @@
     "path": "Erudition",
     "role": "Sub-DPS",
     "imageUrl": "https://img.game8.co/4105938/a7a620b0c9969474e506afc27d57874b.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "2",
@@ -19,7 +19,7 @@
     "path": "Remembrance",
     "role": "Main-DPS",
     "imageUrl": "https://img.game8.co/4104674/c7d4833be32744623796e69cd8955443.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "3",
@@ -30,7 +30,7 @@
     "path": "Harmony",
     "role": "Support",
     "imageUrl": "https://img.game8.co/4074798/ca2244bb4304b47283f0c7d2593a404c.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "4",
@@ -41,7 +41,7 @@
     "path": "Destruction",
     "role": "Sub-DPS",
     "imageUrl": "https://img.game8.co/4074811/d8f806b8713b2d167e2671c4b99278e7.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "5",
@@ -52,7 +52,7 @@
     "path": "Erudition",
     "role": "Main-DPS",
     "imageUrl": "https://img.game8.co/4044949/9986df56ea421e73acd7201b3efe5a22.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "6",
@@ -63,7 +63,7 @@
     "path": "Nihility",
     "role": "Main-DPS",
     "imageUrl": "https://img.game8.co/3899367/9cedf24bc0ce960e0b3973250dd28c76.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "7",
@@ -74,7 +74,7 @@
     "path": "Erudition",
     "role": "Sub-DPS",
     "imageUrl": "https://img.game8.co/3899451/579d23b3f6ec047cf5ace13a5d17720c.png/show",
-    "userId": "test"
+    "description": "test"
   },
   {
     "id": "8",
@@ -85,6 +85,6 @@
     "path": "Remembrance",
     "role": "Support",
     "imageUrl": "https://img.game8.co/4137692/d5bcdd1e7f7a9543dffcdd702e19926a.png/show",
-    "userId": "test"
+    "description": "test"
   }
 ]

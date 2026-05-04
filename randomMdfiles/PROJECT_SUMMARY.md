@@ -8,7 +8,7 @@
 ✅ `Character.java` - MongoDB document model
 ✅ `CharacterRepository.java` - Database layer
 ✅ `CharacterService.java` - Business logic
-✅ `CharacterController.java` - REST API endpoints (/api/characters/*)
+✅ `CharacterController.java` - REST API endpoints (/api/fullCharacterModels/*)
 ✅ `DataInitializer.java` - Sample data initialization
 ✅ `application.properties` - MongoDB & server config (port 8080)
 
@@ -47,13 +47,13 @@ Access at: **http://localhost:8080**
 - Port: 8080 (both frontend and API)
 
 ## API Endpoints
-- `GET /api/characters` - Get all
-- `POST /api/characters` - Create
-- `PUT /api/characters/{id}` - Update
-- `DELETE /api/characters/{id}` - Delete
-- `GET /api/characters/tier/{tier}` - Filter by tier
-- `GET /api/characters/role/{role}` - Filter by role
-- `GET /api/characters/search/{name}` - Search
+- `GET /api/fullCharacterModels` - Get all
+- `POST /api/fullCharacterModels` - Create
+- `PUT /api/fullCharacterModels/{id}` - Update
+- `DELETE /api/fullCharacterModels/{id}` - Delete
+- `GET /api/fullCharacterModels/tier/{tier}` - Filter by tier
+- `GET /api/fullCharacterModels/role/{role}` - Filter by role
+- `GET /api/fullCharacterModels/search/{name}` - Search
 
 ## Sample Data
-7 characters auto-loaded on startup (Warrior, Mage, Rogue, etc.)
+7 fullCharacterModels auto-loaded on startup (Warrior, Mage, Rogue, etc.)

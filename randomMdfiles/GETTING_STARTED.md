@@ -17,7 +17,7 @@ A complete, production-ready full-stack application with three layers:
                      ▼
 ┌────────────────────────────────────────────────────────────┐
 │              🔧 BACKEND (Spring Boot)                      │
-│  • REST API with 7 character management endpoints          │
+│  • REST API with 7 fullCharacterModel management endpoints          │
 │  • Service layer for business logic                        │
 │  • CORS enabled                                            │
 │  • Auto-reload with DevTools                              │
@@ -103,15 +103,15 @@ mvn spring-boot:run
 
 ## 🔗 API Endpoints
 
-All endpoints are available at: `http://localhost:8080/api/characters/`
+All endpoints are available at: `http://localhost:8080/api/fullCharacterModels/`
 
 | Method | Endpoint | Purpose |
 |--------|----------|---------|
-| GET | `/` | Get all characters |
-| GET | `/{id}` | Get character by ID |
-| POST | `/` | Create new character |
-| PUT | `/{id}` | Update character |
-| DELETE | `/{id}` | Delete character |
+| GET | `/` | Get all fullCharacterModels |
+| GET | `/{id}` | Get fullCharacterModel by ID |
+| POST | `/` | Create new fullCharacterModel |
+| PUT | `/{id}` | Update fullCharacterModel |
+| DELETE | `/{id}` | Delete fullCharacterModel |
 | GET | `/tier/{tier}` | Filter by tier (S, A, B, etc) |
 | GET | `/role/{role}` | Filter by role (Tank, DPS, Support) |
 | GET | `/search/{name}` | Search by name |
@@ -144,7 +144,7 @@ java -jar app/target/TeamBuilder-1.0.0.jar
 
 ## 📊 Sample Data
 
-The application auto-loads 7 sample characters on startup:
+The application auto-loads 7 sample fullCharacterModels on startup:
 
 - **Warrior** - Tier S, Tank
 - **Mage** - Tier A, DPS
@@ -191,7 +191,7 @@ REACT_APP_ENV=development
 ✅ Loading states (spinner)
 ✅ Error handling and display
 ✅ Async data fetching
-✅ Multi-select character management
+✅ Multi-select fullCharacterModel management
 ✅ Responsive grid layout
 
 ---
@@ -242,7 +242,7 @@ npm run build
 
 2. 🏃 **Test the API**
    ```bash
-   curl http://localhost:8080/api/characters
+   curl http://localhost:8080/api/fullCharacterModels
    ```
 
 3. 🌐 **Visit the application**

@@ -1,5 +1,6 @@
 package teambuilder.model;
 
+import lombok.Getter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
@@ -10,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Character {
+@Getter
+public class FullCharacterModel {
 
     @Id
     private String id;
@@ -22,5 +24,5 @@ public class Character {
     private String role;
     private String imageUrl;
     private String description;
-    
+
 }

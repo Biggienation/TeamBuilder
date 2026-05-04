@@ -15,6 +15,7 @@ interface User {
   firstName?: string;
   lastName?: string;
   active: boolean;
+  ownedCharacters?: string[];
 }
 
 // Initial state

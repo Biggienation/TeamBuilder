@@ -1,6 +1,7 @@
 package teambuilder.controller;
 
-import teambuilder.model.Character;
+import teambuilder.model.BasicCharacterModel;
+import teambuilder.model.FullCharacterModel;
 import teambuilder.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,27 +18,27 @@ public class CharacterController {
     private CharacterService characterService;
 
     @GetMapping
-    public ResponseEntity<List<Character>> getAllCharacters() {
-        List<Character> characters = characterService.getAllCharacters();
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> getAllCharacters() {
+        List<FullCharacterModel> fullCharacterModels = characterService.getAllCharacters();
+        return ResponseEntity.ok(fullCharacterModels);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Character> getCharacterById(@PathVariable String id) {
+    public ResponseEntity<FullCharacterModel> getCharacterById(@PathVariable String id) {
         return characterService.getCharacterById(id)
                 .map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public ResponseEntity<Character> createCharacter(@RequestBody Character character) {
-        Character created = characterService.createCharacter(character);
+    public ResponseEntity<FullCharacterModel> createCharacter(@RequestBody FullCharacterModel fullCharacterModel) {
+        FullCharacterModel created = characterService.createCharacter(fullCharacterModel);
         return ResponseEntity.ok(created);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Character> updateCharacter(@PathVariable String id, @RequestBody Character character) {
-        Character updated = characterService.updateCharacter(character);
+    public ResponseEntity<FullCharacterModel> updateCharacter(@PathVariable String id, @RequestBody FullCharacterModel fullCharacterModel) {
+        FullCharacterModel updated = characterService.updateCharacter(fullCharacterModel);
         return ResponseEntity.ok(updated);
     }
 
@@ -48,32 +49,38 @@ public class CharacterController {
     }
 
     @GetMapping("/tier/{tier}")
-    public ResponseEntity<List<Character>> getCharactersByTier(@PathVariable String tier) {
-        List<Character> characters = characterService.findByTier(tier);
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> getCharactersByTier(@PathVariable String tier) {
+        List<FullCharacterModel> fullCharacterModels = characterService.findByTier(tier);
+        return ResponseEntity.ok(fullCharacterModels);
     }
 
     @GetMapping("/role/{role}")
-    public ResponseEntity<List<Character>> getCharactersByRole(@PathVariable String role) {
-        List<Character> characters = characterService.findByRole(role);
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> getCharactersByRole(@PathVariable String role) {
+        List<FullCharacterModel> fullCharacterModels = characterService.findByRole(role);
+        return ResponseEntity.ok(fullCharacterModels);
     }
 
     @GetMapping("/search/{name}")
-    public ResponseEntity<List<Character>> searchCharactersByName(@PathVariable String name) {
-        List<Character> characters = characterService.findByName(name);
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> searchCharactersByName(@PathVariable String name) {
+        List<FullCharacterModel> fullCharacterModels = characterService.findFullCharacterByName(name);
+        return ResponseEntity.ok(fullCharacterModels);
     }
 
     @GetMapping("/element/{element}")
-    public ResponseEntity<List<Character>> getCharactersByElement(@PathVariable String element) {
-        List<Character> characters = characterService.findByElement(element);
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> getCharactersByElement(@PathVariable String element) {
+        List<FullCharacterModel> fullCharacterModels = characterService.findByElement(element);
+        return ResponseEntity.ok(fullCharacterModels);
 }
 
     @GetMapping("/rarity/{rarity}")
-    public ResponseEntity<List<Character>> getCharactersByRarity(@PathVariable String rarity) {
-        List<Character> characters = characterService.findByRarity(rarity);
-        return ResponseEntity.ok(characters);
+    public ResponseEntity<List<FullCharacterModel>> getCharactersByRarity(@PathVariable String rarity) {
+        List<FullCharacterModel> fullCharacterModels = characterService.findByRarity(rarity);
+        return ResponseEntity.ok(fullCharacterModels);
+    }
+
+    @GetMapping("/basic")
+    public ResponseEntity<List<BasicCharacterModel>> getAllBasicCharacters() {
+        List<BasicCharacterModel> BasicCharacterModels = characterService.getAllBasicCharacters();
+        return ResponseEntity.ok(BasicCharacterModels);
     }
 }

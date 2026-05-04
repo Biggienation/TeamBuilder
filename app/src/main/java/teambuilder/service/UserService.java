@@ -7,7 +7,6 @@ import teambuilder.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -130,6 +129,21 @@ public class UserService {
                 .stream()
                 .map(this::convertToResponse)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Save user's owned characters
+     */
+    public UserResponse saveOwnedCharacters(String id, List<String> characterNames) throws Exception {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isEmpty()) {
+            throw new Exception("User not found");
+        }
+
+        User user = userOptional.get();
+        user.setOwnedCharacters(characterNames);
+        User updatedUser = userRepository.save(user);
+        return convertToResponse(updatedUser);
     }
 
     /**

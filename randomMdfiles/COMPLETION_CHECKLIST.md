@@ -8,7 +8,7 @@
 - [x] Created `CharacterService.java` (business logic)
 - [x] Created `CharacterController.java` (REST API with 7 endpoints)
 - [x] Enhanced `appConfig.java` with logging
-- [x] Created `DataInitializer.java` (auto-loads 7 sample characters)
+- [x] Created `DataInitializer.java` (auto-loads 7 sample fullCharacterModels)
 - [x] Created `application.properties` (MongoDB config on port 8080)
 
 ## Frontend Integration ✅
@@ -17,12 +17,12 @@
 - [x] Updated `Chareters.tsx` to fetch from API
 - [x] Added loading spinner during fetch
 - [x] Added error handling
-- [x] Converted to use API data with real character IDs
+- [x] Converted to use API data with real fullCharacterModel IDs
 
 ## Database Setup ✅
 - [x] MongoDB in Docker (already configured)
 - [x] Auto data initialization on startup
-- [x] 7 sample characters ready
+- [x] 7 sample fullCharacterModels ready
 
 ## Documentation ✅
 - [x] `SETUP.md` - Comprehensive setup guide
@@ -64,7 +64,7 @@ Visit: **http://localhost:8080**
 
 ✅ Frontend built and served by Spring Boot
 ✅ Characters page fetches data from MongoDB via API
-✅ Full CRUD API endpoints for characters
+✅ Full CRUD API endpoints for fullCharacterModels
 ✅ Filtering by tier, role, and search by name
 ✅ Loading and error states in UI
 ✅ Auto-loaded sample data on app start

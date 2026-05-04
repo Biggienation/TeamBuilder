@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import teambuilder.model.Team;
+import teambuilder.model.CharacterTeamModel;
 import teambuilder.service.TeamService;
 
 import java.util.List;
@@ -20,8 +20,8 @@ public class TeamController {
     private TeamService teamService;
 
     @GetMapping
-    public ResponseEntity<List<Team>> getAllTeams() {
-        List<Team> teams = teamService.getAllTeams();
+    public ResponseEntity<List<CharacterTeamModel>> getAllTeams() {
+        List<CharacterTeamModel> teams = teamService.getAllTeams();
         return ResponseEntity.ok(teams);
     }
 

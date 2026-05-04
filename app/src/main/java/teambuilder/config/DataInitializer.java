@@ -1,6 +1,6 @@
 package teambuilder.config;
 
-import teambuilder.model.Character;
+import teambuilder.model.FullCharacterModel;
 import teambuilder.model.Team;
 import teambuilder.model.User;
 import teambuilder.repository.CharacterRepository;
@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Map;
 
 @Component
 public class DataInitializer {
@@ -51,8 +50,8 @@ public class DataInitializer {
     private void InitializeCharacters() {
         if (characterRepository.count() == 0) {
             try {
-                Character[] characters = loadCharactersFromJson();
-                characterRepository.saveAll(Arrays.asList(characters));
+                FullCharacterModel[] fullCharacterModels = loadCharactersFromJson();
+                characterRepository.saveAll(Arrays.asList(fullCharacterModels));
             } catch (IOException e) {
                 System.err.println("Error loading characters from JSON: " + e.getMessage());
             }
@@ -70,10 +69,10 @@ public class DataInitializer {
         }
     }
 
-    private Character[] loadCharactersFromJson() throws IOException {
+    private FullCharacterModel[] loadCharactersFromJson() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         ClassPathResource resource = new ClassPathResource("data/Charaters.JSON");
-        return objectMapper.readValue(resource.getInputStream(), Character[].class);
+        return objectMapper.readValue(resource.getInputStream(), FullCharacterModel[].class);
     }
 
     private Team[] loadTeamsFromJson() throws IOException {
