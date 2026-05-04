@@ -13,8 +13,8 @@ public class Team {
     private String id;
     private String name;
     private String description;
-    private Character character1;
-    private Character character2;
-    private Character character3;
-    private Character character4;
+    private String character1;
+    private String character2;
+    private String character3;
+    private String character4;
 }
