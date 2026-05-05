@@ -2,10 +2,21 @@
   {
     "id": "1",
     "name": "The Herta Team",
+    "categories": ["General", "Memory of Chaos"],
     "description": "test",
     "character1": "The Herta",
     "character2": "Anaxa",
     "character3": "Tribbie",
     "character4": "Hyacine"
+  },
+  {
+    "id": "2",
+    "name": "Kafka Team",
+    "categories": ["General"],
+    "description": "test",
+    "character1": "Kafka",
+    "character2": "Hysilens",
+    "character3": "Black Swan",
+    "character4": "Huohuo"
   }
 ]

@@ -1,6 +1,7 @@
 import { useStore } from './hooks';
 import Home from './views/Home';
 import Chareters from './views/Chareters';
+import CharacterDetail from './views/CharacterDetail';
 import Builder from './views/Builder';
 import Login from './views/Login';
 import Register from './views/Register';
@@ -10,6 +11,11 @@ import React from 'react';
 
 export default function Router() {
     const [rootPath] = useStore(selectRootPath);
+
+    // Check if it's a character detail page (e.g., "/character/123")
+    if (rootPath.startsWith('/character/')) {
+        return <CharacterDetail />;
+    }
 
     switch (rootPath) {
         case '/home':

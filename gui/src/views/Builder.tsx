@@ -1,15 +1,50 @@
 import React, { useEffect } from 'react'
-import {CircularProgress, Grid, Paper, Typography} from "@mui/material";
+import { CircularProgress, Grid, Paper, Typography, Tabs, Tab, Box, FormControlLabel, Switch } from "@mui/material";
 import TeamCard from "components/TeamCard";
-import {getTeams, Team} from "../services/teamApi";
+import { getTeams, Team } from "../services/teamApi";
+import { useStore } from "../hooks";
+import { selectUser } from "../reducers/selectors";
 
-export default function Builder () {
+const tabs = ['General', 'Memory of Chaos', 'Pure Fiction', 'Apocalyptic Shadow', 'Anomaly Arbitration'];
 
+interface TabPanelProps {
+  children?: React.ReactNode;
+  index: number;
+  value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`builder-tabpanel-${index}`}
+      aria-labelledby={`builder-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box>{children}</Box>}
+    </div>
+  );
+}
+
+function a11yProps(index: number) {
+  return {
+    id: `builder-tab-${index}`,
+    'aria-controls': `builder-tabpanel-${index}`,
+  };
+}
+
+export default function Builder() {
     const [teams, setTeams] = React.useState<Team[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState<string | null>(null);
+    const [tabValue, setTabValue] = React.useState(0);
+    const [filterBuildable, setFilterBuildable] = React.useState(false);
+    const [user] = useStore(selectUser);
 
-    useEffect(() =>  {
+    useEffect(() => {
         fetchTeams().then();
     }, []);
 
@@ -25,6 +60,33 @@ export default function Builder () {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+        setTabValue(newValue);
+    };
+
+    // Filter teams based on tab and buildable status
+    const getFilteredTeams = (tabIndex: number) => {
+        let filtered = teams.filter((team) => team.category && team.category.includes(tabs[tabIndex]));
+        
+        if (filterBuildable && user?.ownedCharacters) {
+            filtered = filtered.filter((team) => {
+                // Get character names from team
+                const character1 = (team.character1 as any)?.name;
+                const character2 = (team.character2 as any)?.name;
+                const character3 = (team.character3 as any)?.name;
+                const character4 = (team.character4 as any)?.name;
+                
+                const teamCharacters = [character1, character2, character3, character4].filter(Boolean);
+                
+                return teamCharacters.every((charName) => 
+                    user.ownedCharacters.includes(charName)
+                );
+            });
+        }
+        
+        return filtered;
     };
 
     if (loading) {
@@ -43,13 +105,70 @@ export default function Builder () {
         );
     }
 
-  return (
-      <Paper elevation={1} sx={{ padding: 2 }}>
-    <Grid className="grid" container direction="column" alignItems="center" gap={2}>
-        {teams.map((data) => (
-                <TeamCard data={data} />
-        ))}
-    </Grid>
-      </Paper>
-  )
+    return (
+        <Paper elevation={1} sx={{ padding: 2 }}>
+            <Box sx={{ marginBottom: 2 }}>
+                <FormControlLabel
+                    control={
+                        <Switch 
+                            checked={filterBuildable} 
+                            onChange={(e) => setFilterBuildable(e.target.checked)}
+                            sx={{
+                                '& .MuiSwitch-switchBase.Mui-checked': {
+                                    color: '#7E8C54',
+                                },
+                                '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
+                                    backgroundColor: '#7E8C54',
+                                },
+                            }}
+                        />
+                    }
+                    label="Show only buildable teams"
+                />
+            </Box>
+
+            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tabs 
+                    value={tabValue} 
+                    onChange={handleTabChange} 
+                    aria-label="team tabs"
+                    sx={{
+                        '& .MuiTab-root': {
+                            color: 'text.secondary',
+                            '&.Mui-selected': {
+                                color: '#7E8C54',
+                            },
+                        },
+                        '& .MuiTabs-indicator': {
+                            backgroundColor: '#7E8C54',
+                        },
+                    }}
+                >
+                    {tabs.map((tab, index) => (
+                        <Tab key={index} label={tab} {...a11yProps(index)} />
+                    ))}
+                </Tabs>
+            </Box>
+
+            {tabs.map((tab, index) => (
+                <CustomTabPanel key={index} value={tabValue} index={index}>
+                    <Grid className="grid" container direction="column" alignItems="center" gap={2} sx={{ padding: 2 }}>
+                        {teams.map ((team) => (
+                            <TeamCard key={team.id} data={team} />
+                        ))}
+
+                        {getFilteredTeams(index).length > 0 ? (
+                            getFilteredTeams(index).map((data) => (
+                                <TeamCard key={data.id} data={data} />
+                            ))
+                        ) : (
+                            <Typography color="textSecondary">
+                                {filterBuildable ? 'No buildable teams with your characters' : 'No teams available'}
+                            </Typography>
+                        )}
+                    </Grid>
+                </CustomTabPanel>
+            ))}
+        </Paper>
+    )
 }

@@ -86,5 +86,82 @@
     "role": "Support",
     "imageUrl": "https://img.game8.co/4137692/d5bcdd1e7f7a9543dffcdd702e19926a.png/show",
     "description": "test"
+  },
+  {
+    "id": "9",
+    "name": "Cerydra",
+    "tier": "S",
+    "rarity": "5-star",
+    "element": "Wind",
+    "path": "Harmony",
+    "role": "Support",
+    "imageUrl": "https://img.game8.co/4198742/c7e8758b57025c346759b7f2db800f3d.png/show",
+    "description": "test"
+  },
+  {
+    "id": "10",
+    "name": "Huohuo",
+    "tier": "SS",
+    "rarity": "5-star",
+    "element": "Wind",
+    "path": "Abundance",
+    "role": "Support",
+    "imageUrl": "https://img.game8.co/3899380/226b90c621a962707100fc840295ae85.png/show",
+    "description": "test"
+  },
+  {
+    "id": "11",
+    "name": "Black Swan",
+    "tier": "S",
+    "rarity": "5-star",
+    "element": "Wind",
+    "path": "Nihility",
+    "role": "Support",
+    "imageUrl": "https://img.game8.co/3807686/fa433902a0f028d81123aa25322021d3.png/show",
+    "description": "test"
+  },
+  {
+    "id": "12",
+    "name": "Kafka",
+    "tier": "S",
+    "rarity": "5-star",
+    "element": "Lightning",
+    "path": "Nihility",
+    "role": "Main-DPS",
+    "imageUrl": "https://img.game8.co/3899458/07e1e69d684f3f62496d384c5bab838c.png/show",
+    "description": "test"
+  },
+  {
+    "id": "13",
+    "name": "Hysilens",
+    "tier": "S",
+    "rarity": "5-star",
+    "element": "Physical",
+    "path": "Nihility",
+    "role": "Sub-DPS",
+    "imageUrl": "https://img.game8.co/4197866/b8008b5796ced1fec83d66665197b7dd.png/show",
+    "description": "test"
+  },
+  {
+    "id": "14",
+    "name": "Sunday",
+    "tier": "SS",
+    "rarity": "5-star",
+    "element": "Imaginary",
+    "path": "Harmony",
+    "role": "Support",
+    "imageUrl": "https://img.game8.co/4010974/4d201b7d582745d60c2eecdaf80c8f0c.png/show",
+    "description": "test"
+  },
+  {
+    "id": "15",
+    "name": "Sparxie",
+    "tier": "S",
+    "rarity": "5-star",
+    "element": "Fire",
+    "path": "Elation",
+    "role": "Sub-DPS",
+    "imageUrl": "https://img.game8.co/4377005/0ca40ea822237b8f5beb3a513af7acac.png/show",
+    "description": "test"
   }
 ]

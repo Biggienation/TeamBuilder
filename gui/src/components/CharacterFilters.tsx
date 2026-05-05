@@ -1,6 +1,42 @@
 import React from 'react';
 import { Box, FormControl, Radio, RadioGroup, FormControlLabel, FormLabel, Button } from '@mui/material';
-import GreenSpacer from "components/GreenSpacer";
+// @ts-ignore
+import { pathIcons } from 'util/pathIcons';
+// @ts-ignore
+import { elementIcons } from 'util/elementIcons';
+
+const styles = {
+  filterWrapper: {
+      // backgroundColor: '#F0F0F0',
+    flexShrink: 0,
+    paddingRight: 2,
+    borderRight: '1px solid #ccc',
+  },
+    filterContainer: {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 3,
+    },
+    radioLabel: {
+        backgroundColor: '#F0F0F0',
+        display : 'flex',
+        alignItems: 'center',
+        padding: '4px 8px',
+        radius: 4,
+        marginBottom: '1px'
+    },
+    formLabel: {
+        color: 'text.primary',
+        fontWeight: 'bold',
+        marginBottom: 1
+    },
+    image : {
+        height: 20,
+        width: 20,
+        marginRight: 20
+    }
+} as const;
+
 
 interface CharacterFiltersProps {
   elementFilter: string;
@@ -13,6 +49,14 @@ interface CharacterFiltersProps {
   elementOptions: string[];
   roleOptions: string[];
   pathOptions: string[];
+}
+
+function getPathIcon(path: string) {
+    return pathIcons.find((p: { name: string; })  => p.name === path)?.icon || '';
+}
+
+function getElementIcon(element: string) {
+    return elementIcons.find((e: { name: string; })  => e.name === element)?.icon || '';
 }
 
 export default function CharacterFilters({
@@ -28,42 +72,50 @@ export default function CharacterFilters({
   pathOptions,
 }: CharacterFiltersProps) {
   return (
-    <Box sx={{ width: 300, flexShrink: 0, paddingRight: 2, borderRight: '1px solid #ccc' }}>
-      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-        <FormControl component="fieldset">
-          <FormLabel component="legend" sx={{ color: 'text.primary', fontWeight: 'bold', marginBottom: 1 }}>Element</FormLabel>
+    <Box sx={styles.filterWrapper}>
+      <Box sx={styles.filterContainer}>
+
+          <FormControl component="fieldset" sx={{borderBottom: 1, borderColor: 'divider', paddingBottom: 2}}>
+              <FormLabel component="legend" sx={styles.formLabel}>Path</FormLabel>
+              <RadioGroup
+                  value={pathFilter}
+                  onChange={(e) => onPathFilterChange(e.target.value)}
+              >
+                  {pathOptions.map((path) => (
+                      <div key={path} style={styles.radioLabel}>
+                          {path !== 'All' ?  <img src={getPathIcon(path)} alt={path} style={styles.image}/> : <div style={styles.image}/>}
+                          <FormControlLabel key={path} value={path} control={<Radio size="small" />} label={path}/>
+                      </div>
+                  ))}
+              </RadioGroup>
+          </FormControl>
+
+        <FormControl component="fieldset" sx={{borderBottom: 1, borderColor: 'divider', paddingBottom: 2}}>
+          <FormLabel component="legend" sx={styles.formLabel}>Element</FormLabel>
           <RadioGroup
             value={elementFilter}
             onChange={(e) => onElementFilterChange(e.target.value)}
           >
             {elementOptions.map((element) => (
-              <FormControlLabel key={element} value={element} control={<Radio size="small" />} label={element} />
+                <div key={element} style={styles.radioLabel}>
+                    {element !== 'All' ? <img src={getElementIcon(element)} alt={element} style={styles.image}/> : <div style={styles.image}/>}
+              <FormControlLabel key={element} value={element} control={<Radio size="small" />} label={element} sx={styles.radioLabel}/>
+                </div>
             ))}
           </RadioGroup>
         </FormControl>
-          <GreenSpacer/>
 
-        <FormControl component="fieldset">
-          <FormLabel component="legend" sx={{ color: 'text.primary', fontWeight: 'bold', marginBottom: 1 }}>Role</FormLabel>
+        <FormControl component="fieldset" sx={{borderBottom: 1, borderColor: 'divider', paddingBottom: 2}}>
+          <FormLabel component="legend" sx={styles.formLabel}>Role</FormLabel>
           <RadioGroup
             value={roleFilter}
             onChange={(e) => onRoleFilterChange(e.target.value)}
           >
             {roleOptions.map((role) => (
-              <FormControlLabel key={role} value={role} control={<Radio size="small" />} label={role} />
-            ))}
-          </RadioGroup>
-        </FormControl>
-          <GreenSpacer/>
-
-        <FormControl component="fieldset">
-          <FormLabel component="legend" sx={{ color: 'text.primary', fontWeight: 'bold', marginBottom: 1 }}>Path</FormLabel>
-          <RadioGroup
-            value={pathFilter}
-            onChange={(e) => onPathFilterChange(e.target.value)}
-          >
-            {pathOptions.map((path) => (
-              <FormControlLabel key={path} value={path} control={<Radio size="small" />} label={path} />
+                <div key={role} style={styles.radioLabel}>
+                    <div style={styles.image}/>
+              <FormControlLabel key={role} value={role} control={<Radio size="small"/>} label={role} sx={styles.radioLabel} />
+                </div>
             ))}
           </RadioGroup>
         </FormControl>
