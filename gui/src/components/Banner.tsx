@@ -10,6 +10,7 @@ export function Banner() {
       display: 'flex',
         justifyContent: 'center',
       margin : '0  0 20px 0 ',
+    borderBottom: 1, borderColor: 'divider',
   };
 
   const imageStyles: React.CSSProperties = {

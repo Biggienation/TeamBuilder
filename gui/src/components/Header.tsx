@@ -14,10 +14,25 @@ import PersonIcon from '@mui/icons-material/Person';
 import { useStore } from '../hooks';
 import { selectRootPath, selectUser } from '../reducers/selectors';
 import AdbIcon from '@mui/icons-material/Adb';
+import {grey} from "@mui/material/colors";
+import {createTheme} from "@mui/material";
 
-const pages = ['Home', 'Chareters', 'Builder'];
-const authenticatedSettings = ['Settings', 'Settings', 'Logout'];
+// @ts-ignore
+import characterIcon from '../resources/Honkai Star Rail Icons/Profile - Transparent.png'
+
+// @ts-ignore
+import teamSetupIcon from '../resources/Honkai Star Rail Icons/Team - Transparent.png'
+
+const authenticatedSettings = ['Settings', 'Logout'];
 const unauthenticatedSettings = ['Login', 'Register'];
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: grey[900],
+        },
+    },
+});
 
 function Header() {
   const [, dispatch] = useStore(selectRootPath);
@@ -61,16 +76,17 @@ function Header() {
 
   const settings = user ? authenticatedSettings : unauthenticatedSettings;
 
-  return (
-    <AppBar position="static" color={"default"} >
+    // @ts-ignore
+    return (
+    <AppBar position="static" color={'default'} >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
+              onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -110,25 +126,33 @@ function Header() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={() => { handleCloseNavMenu(); handleNav('/' + page.toLowerCase()); }}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem key={'Characters'} onClick={() => { handleCloseNavMenu(); handleNav('/characters'); }}>
+                  <Typography sx={{ textAlign: 'center' }}>{'Characters'}</Typography>
                 </MenuItem>
-              ))}
+                <MenuItem key={'TeamSetup'} onClick={() => { handleCloseNavMenu(); handleNav('/teamSetup'); }}>
+                    <Typography sx={{ textAlign: 'center' }}>{'Team Setup'}</Typography>
+                </MenuItem>
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
               <Button
-                key={page}
-                onClick={() => { handleCloseNavMenu(); handleNav('/' + page.toLowerCase()); }}
+                key={'Characters'}
+                onClick={() => { handleCloseNavMenu(); handleNav('/characters'); }}
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                {page}
+                  <img src={characterIcon} alt={'characters'} style={{ height: 50, width: 50}}/>
+                  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{'Characters'}</Typography>
               </Button>
-            ))}
+              <Button
+                  key={'TeamSetup'}
+                  onClick={() => { handleCloseNavMenu(); handleNav('/teamSetup'); }}
+                  sx={{ my: 2, color: 'black', display: 'block' }}
+              >
+                  <img src={teamSetupIcon} alt={'teamSetup'} style={{ height: 50, width: 50}}/>
+                  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{'Team Setup'}</Typography>
+              </Button>
           </Box>
-          <Box sx={{ flexGrow: 0 }}>
+            { user ? <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ...(user ? { border: '2px solid #7E8C54' } : {}) }}>
                 <PersonIcon />
@@ -156,13 +180,23 @@ function Header() {
                 </MenuItem>
               ))}
             </Menu>
-          </Box>
+          </Box> : settings.map((setting : string) => (
+                <Button
+                    key={setting}
+                    onClick={() => { handleCloseNavMenu(); handleNav('/' + setting.toLowerCase()); }}
+                    sx={{ my: 2, color: 'black', display: 'block' }}
+                >
+                    <img src={teamSetupIcon} alt={'teamSetup'} style={{ height: 50, width: 50}}/>
+                    <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{setting}</Typography>
+                </Button>
+            ))}
+
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
+              onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

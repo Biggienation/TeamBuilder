@@ -1,8 +1,8 @@
 import { useStore } from './hooks';
 import Home from './views/Home';
-import Chareters from './views/Chareters';
+import Characters from './views/Chareters';
 import CharacterDetail from './views/CharacterDetail';
-import Builder from './views/Builder';
+import TeamSetup from './views/Builder';
 import Login from './views/Login';
 import Register from './views/Register';
 import Settings from './views/Settings';
@@ -20,10 +20,10 @@ export default function Router() {
     switch (rootPath) {
         case '/home':
             return <Home />;
-        case '/chareters':
-            return <Chareters />;
-        case '/builder':
-            return <Builder />;
+        case '/characters':
+            return <Characters />;
+        case '/teamSetup':
+            return <TeamSetup />;
         case '/login':
             return <Login />;
         case '/register':

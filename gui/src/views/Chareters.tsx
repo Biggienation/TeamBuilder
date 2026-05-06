@@ -107,14 +107,6 @@ export default function Chareters() {
         );
     }
 
-    if (error) {
-        return (
-            <Paper elevation={1} sx={{ padding: 2 }}>
-                <Typography color="error">{error}</Typography>
-            </Paper>
-        );
-    }
-
     return (
         <Paper elevation={1} sx={{ padding: 2, height: '100dvh' }}>
             {/* Main Content Layout */}
@@ -160,16 +152,22 @@ export default function Chareters() {
                     </Box>
                     
                     <CustomTabPanel value={tabValue} index={0}>
-                        <CharacterTab characters={filteredCharacters} />
+                        {error ?
+                            <CharacterTab characters={filteredCharacters} /> :
+                            <Typography color="error">{error}</Typography>
+                        }
                     </CustomTabPanel>
 
                     {user && <CustomTabPanel value={tabValue} index={1}>
-                        <CollectionTab 
+                        { error ?
+                            <CollectionTab
                             characters={filteredCharacters} 
                             selectedCards={selectedCards}
                             setSelectedCards={setSelectedCards}
-                            user={user}
-                        />
+                            user={user}/> :
+                            <Typography color="error">{error}</Typography>
+                        }
+                        {"}"}
                     </CustomTabPanel>}
                 </Box>
             </Box>
