@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, Grid, CardMedia, Box, Typography, Button } from '@mui/material';
-import GreenSpacer from 'components/GreenSpacer';
+import GreySpacer from '@components/GreySpacer';
 import { Character } from '../services/characterApi';
 import { userApi } from '../services/userApi';
 
@@ -75,7 +75,7 @@ export default function CollectionTab({ characters, selectedCards, setSelectedCa
                 <CardContent>
                   {ch.name}
                 </CardContent>
-                <GreenSpacer />
+                <GreySpacer />
               </CardActionArea>
             </Card>
           </Grid>

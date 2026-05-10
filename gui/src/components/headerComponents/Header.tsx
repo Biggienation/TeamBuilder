@@ -11,17 +11,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
-import { useStore } from '../hooks';
-import { selectRootPath, selectUser } from '../reducers/selectors';
+import { useStore } from '../../hooks';
+import { selectRootPath, selectUser } from '../../reducers/selectors';
 import AdbIcon from '@mui/icons-material/Adb';
 import {grey} from "@mui/material/colors";
 import {createTheme} from "@mui/material";
 
 // @ts-ignore
-import characterIcon from '../resources/Honkai Star Rail Icons/Profile - Transparent.png'
+import characterIcon from '../../resources/Honkai Star Rail Icons/Profile - Transparent.png'
 
 // @ts-ignore
-import teamSetupIcon from '../resources/Honkai Star Rail Icons/Team - Transparent.png'
+import teamSetupIcon from '../../resources/Honkai Star Rail Icons/Team - Transparent.png'
+import HeaderButtonFullSize from "@components/headerComponents/HeaderButtonFullSize";
 
 const authenticatedSettings = ['Settings', 'Logout'];
 const unauthenticatedSettings = ['Login', 'Register'];
@@ -78,10 +79,10 @@ function Header() {
 
     // @ts-ignore
     return (
-    <AppBar position="static" color={'default'} >
+    <AppBar position="static" color={'default'} sx={{backgroundColor: 'rgba(0, 0, 0, 0.8)',}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            <div style={{ alignItems: "center", color: 'white', display: 'flex', flexDirection: "row", backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '2px, solid, grey', marginRight: 9, padding: 28, borderRadius: 4}}>
           <Typography
               onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
             variant="h6"
@@ -93,12 +94,14 @@ function Header() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: '#7E8C54',
+              color: 'white',
               textDecoration: 'none',
             }}
           >
             Team Builder
           </Typography>
+                <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            </div>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -135,22 +138,10 @@ function Header() {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <Button
-                key={'Characters'}
-                onClick={() => { handleCloseNavMenu(); handleNav('/characters'); }}
-                sx={{ my: 2, color: 'black', display: 'block' }}
-              >
-                  <img src={characterIcon} alt={'characters'} style={{ height: 50, width: 50}}/>
-                  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{'Characters'}</Typography>
-              </Button>
-              <Button
-                  key={'TeamSetup'}
-                  onClick={() => { handleCloseNavMenu(); handleNav('/teamSetup'); }}
-                  sx={{ my: 2, color: 'black', display: 'block' }}
-              >
-                  <img src={teamSetupIcon} alt={'teamSetup'} style={{ height: 50, width: 50}}/>
-                  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{'Team Setup'}</Typography>
-              </Button>
+              <HeaderButtonFullSize src={characterIcon} alt={'Characters'}
+                                    handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/characters'} />
+              <HeaderButtonFullSize src={teamSetupIcon} alt={'Team Setup'}
+                                    handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/teamSetup'} />
           </Box>
             { user ? <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
@@ -181,14 +172,8 @@ function Header() {
               ))}
             </Menu>
           </Box> : settings.map((setting : string) => (
-                <Button
-                    key={setting}
-                    onClick={() => { handleCloseNavMenu(); handleNav('/' + setting.toLowerCase()); }}
-                    sx={{ my: 2, color: 'black', display: 'block' }}
-                >
-                    <img src={teamSetupIcon} alt={'teamSetup'} style={{ height: 50, width: 50}}/>
-                    <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{setting}</Typography>
-                </Button>
+                <HeaderButtonFullSize src={teamSetupIcon} alt={setting}
+                                      handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/' + setting.toLowerCase()} />
             ))}
 
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />

@@ -1,6 +1,6 @@
 import {Card, CardActionArea, CardContent, Typography, Box, CardMedia} from '@mui/material';
 import React from 'react';
-import GreenSpacer from "components/GreenSpacer";
+import GreySpacer from "@components/GreySpacer";
 import {Team} from "../services/teamApi";
 
 const ChHeight = {xs: 80, sm: 100, md: 120, lg: 150}
@@ -13,7 +13,7 @@ interface TeamCardProps {
 export default function TeamCard({data}: TeamCardProps) {
     return (
         <Card elevation={5} color={"default"}>
-            <GreenSpacer/>
+            <GreySpacer/>
             <CardActionArea sx={{padding: 2}}>
                 <CardContent sx={{padding: 0, display: 'flex', flexDirection: 'column', gap: 2}}>
                     <Box sx={{display: 'flex', gap: 1, justifyContent: 'flex-start'}}>

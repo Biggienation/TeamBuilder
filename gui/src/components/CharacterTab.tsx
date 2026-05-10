@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, Grid, CardMedia, Box } from '@mui/material';
-import GreenSpacer from 'components/GreenSpacer';
+import GreySpacer from '@components/GreySpacer';
 import { Character } from '../services/characterApi';
 import { useStore } from '../hooks';
 import { selectRootPath } from '../reducers/selectors';
@@ -41,7 +41,7 @@ export default function CharacterTab({ characters }: CharacterTabProps) {
                 <CardContent>
                   {ch.name}
                 </CardContent>
-                <GreenSpacer />
+                <GreySpacer />
               </CardActionArea>
             </Card>
           </Grid>
