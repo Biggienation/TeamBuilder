@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 export function LogoBanner() {
 
@@ -7,17 +8,19 @@ export function LogoBanner() {
             fontSize: '16px',
         },
         container: {
-            display: 'flex',
+            display: { xs: 'none', md: 'flex' },
             flexDirection: 'row',
             alignItems: 'center',
+            position: 'relative',
             padding: '20px',
             textAlign: 'center',
             backgroundColor: 'rgb(20, 27, 45, 0.9)'
         },
         textContainer: {
-            padding: '20px',
+            position: 'absolute',
+            left: '50%',
+            transform: 'translateX(-50%)',
             textAlign: 'center',
-            backgroundColor: '#141B2D'
         },
         header: {
             color: '#E8E8E8',
@@ -26,8 +29,9 @@ export function LogoBanner() {
     } as const;
 
     return (
-      <div style={styles.container}>
+      <Box sx={styles.container}>
           <img src={"http://localhost:8080/images/HSR-Logo.webp"} alt={'HSRLogo'}/>
+          <span style={{width: 30}}/>
           <div style={styles.textContainer}>
               <h2 style={styles.header}>
                   Welcome to HSR Team Builder
@@ -36,6 +40,6 @@ export function LogoBanner() {
                   Check the best team options for you.
               </p>
           </div>
-      </div>
+      </Box>
   );
 }
