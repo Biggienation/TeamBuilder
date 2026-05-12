@@ -16,7 +16,7 @@ function Home() {
     return (
         <Paper sx={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', padding: '20px', textAlign: 'center', backgroundColor: '#141B2D'}}>
-                <img src={gameLogo} alt={'GameLogo'}/>
+                <img src={"http://localhost:8080/images/HSR-Logo.webp"} alt={'HSRLogo'}/>
             <div style={{padding: '20px', textAlign: 'center', backgroundColor: '#141B2D'}}>
                 <h2 style={{color: '#E8E8E8', marginBottom: '10px'}}>Welcome to TeamBuilder</h2>
                 <p style={homeDescriptionStyles}> Manage and organize your teams efficiently.</p>
