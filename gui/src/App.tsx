@@ -15,7 +15,7 @@ const mainStyles: React.CSSProperties = {
   alignItems: 'center',
   justifyContent: 'center',
     backgroundColor : '#f8f8f8',
-    backgroundImage : 'url("https://images4.alphacoders.com/137/thumb-1920-1377271.jpg")',
+    backgroundImage : 'url("http://localhost:8080/images/LoginScreen.png")',
     backgroundSize: 'cover',
     height: '100%'
 };

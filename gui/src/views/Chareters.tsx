@@ -101,14 +101,14 @@ export default function Chareters() {
 
     if (loading) {
         return (
-            <Paper elevation={1} sx={{ padding: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px' }}>
+            <Paper elevation={1} sx={{ padding: 2, display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '400px', backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
                 <CircularProgress />
             </Paper>
         );
     }
 
     return (
-        <Paper elevation={1} sx={{ padding: 2, height: '100dvh' }}>
+        <Paper elevation={1} sx={{ padding: 2, height: '100dvh', backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
             {/* Main Content Layout */}
             <Box sx={{ display: 'flex', gap: 3 }}>
                 {/* Filter Controls */}
@@ -138,7 +138,7 @@ export default function Chareters() {
                                 '& .MuiTab-root': {
                                     color: 'text.secondary',
                                     '&.Mui-selected': {
-                                        color: '#7E8C54',
+                                        color: 'white',
                                     },
                                 },
                                 '& .MuiTabs-indicator': {

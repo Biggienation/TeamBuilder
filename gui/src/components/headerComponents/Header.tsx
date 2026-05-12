@@ -73,7 +73,7 @@ function Header() {
 
     // @ts-ignore
     return (
-    <AppBar position="static" color={'default'} sx={{backgroundColor: 'rgba(0, 0, 0, 0.8)',}}>
+    <AppBar position="static" color={'default'} sx={{backgroundColor: 'rgba(0, 0, 0, 0.9)',}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <div style={{ alignItems: "center", color: 'white', display: 'flex', flexDirection: "row", backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '2px, solid, grey', marginRight: 9, padding: 28, borderRadius: 4}}>

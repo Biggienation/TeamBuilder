@@ -126,6 +126,8 @@ export default function TierTable() {
     }, []);
 
     return (
+        <div style={{flex: 1}}>
+        <h2>Teir List</h2>
         <Paper style={{ height: 400, width: '100%' }}>
             <TableVirtuoso
                 data={rows}
@@ -134,5 +136,6 @@ export default function TierTable() {
                 itemContent={rowContent}
             />
         </Paper>
+        </div>
     );
 }

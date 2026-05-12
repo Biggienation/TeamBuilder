@@ -106,7 +106,7 @@ export default function Builder() {
     }
 
     return (
-        <Paper elevation={1} sx={{ padding: 2 }}>
+        <Paper elevation={1} sx={{ padding: 2, backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
             <Box sx={{ marginBottom: 2 }}>
                 <FormControlLabel
                     control={
