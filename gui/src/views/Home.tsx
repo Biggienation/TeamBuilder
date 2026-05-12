@@ -19,6 +19,7 @@ function Home() {
             <ImageList/>
             <GreySpacer/>
             <ActiveBannerDisplay/>
+            <GreySpacer/>
             <TierTable/>
         </Paper>
     );
