@@ -1,9 +1,9 @@
 import React from 'react';
 import Router from './Router';
-import Header from '@components/headerComponents/Header';
+import Header from './components/headerComponents/Header';
 import { StoreProvider } from './StoreProvider';
 import { Paper } from "@mui/material";
-import GreySpacer from "@components/GreySpacer";
+import GreySpacer from "./components/GreySpacer";
 
 const appStyles: React.CSSProperties = {
   textAlign: 'center',

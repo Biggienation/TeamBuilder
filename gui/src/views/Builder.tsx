@@ -68,8 +68,8 @@ export default function Builder() {
 
     // Filter teams based on tab and buildable status
     const getFilteredTeams = (tabIndex: number) => {
-        let filtered = teams.filter((team) => team.category && team.category.includes(tabs[tabIndex]));
-        
+        // @ts-ignore
+        let filtered = teams
         if (filterBuildable && user?.ownedCharacters) {
             filtered = filtered.filter((team) => {
                 // Get character names from team
@@ -153,10 +153,6 @@ export default function Builder() {
             {tabs.map((tab, index) => (
                 <CustomTabPanel key={index} value={tabValue} index={index}>
                     <Grid className="grid" container direction="column" alignItems="center" gap={2} sx={{ padding: 2 }}>
-                        {teams.map ((team) => (
-                            <TeamCard key={team.id} data={team} />
-                        ))}
-
                         {getFilteredTeams(index).length > 0 ? (
                             getFilteredTeams(index).map((data) => (
                                 <TeamCard key={data.id} data={data} />

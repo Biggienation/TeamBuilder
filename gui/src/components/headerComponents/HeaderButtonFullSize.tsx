@@ -4,12 +4,14 @@ import { Button, Typography } from "@mui/material";
 interface HeaderButtonFullSizeProps {
     src : string;
     alt: string;
-    nav?: string;
+    nav: string;
     handleCloseNavMenu?: () => void;
-    handleNav? : (nav :string) => void;
+    handleNav? : (nav: string) => void;
 }
 
 export default function HeaderButtonFullSize( { src, alt, nav, handleCloseNavMenu, handleNav } : HeaderButtonFullSizeProps) {
+
+
   return (
 <Button
     key={'Characters'}

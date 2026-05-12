@@ -1,9 +1,5 @@
 import React from 'react';
 import { Box, FormControl, Radio, RadioGroup, FormControlLabel, FormLabel, Button } from '@mui/material';
-// @ts-ignore
-import { pathIcons } from 'util/pathIcons';
-// @ts-ignore
-import { elementIcons } from 'util/elementIcons';
 
 const styles = {
   filterWrapper: {
@@ -52,11 +48,11 @@ interface CharacterFiltersProps {
 }
 
 function getPathIcon(path: string) {
-    return pathIcons.find((p: { name: string; })  => p.name === path)?.icon || '';
+    return "http://localhost:8080/images/paths/" + path.toLowerCase() + ".webp";
 }
 
 function getElementIcon(element: string) {
-    return elementIcons.find((e: { name: string; })  => e.name === element)?.icon || '';
+    return "http://localhost:8080/images/elements/" + element.toLowerCase() + ".webp";
 }
 
 export default function CharacterFilters({

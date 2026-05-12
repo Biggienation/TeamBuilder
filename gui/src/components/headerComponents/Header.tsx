@@ -7,7 +7,6 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
@@ -17,12 +16,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import {grey} from "@mui/material/colors";
 import {createTheme} from "@mui/material";
 
-// @ts-ignore
-import characterIcon from '../../resources/Honkai Star Rail Icons/Profile - Transparent.png'
-
-// @ts-ignore
-import teamSetupIcon from '../../resources/Honkai Star Rail Icons/Team - Transparent.png'
-import HeaderButtonFullSize from "@components/headerComponents/HeaderButtonFullSize";
+import HeaderButtonFullSize from 'components/headerComponents/HeaderButtonFullSize';
 
 const authenticatedSettings = ['Settings', 'Logout'];
 const unauthenticatedSettings = ['Login', 'Register'];
@@ -138,9 +132,9 @@ function Header() {
             </Menu>
           </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <HeaderButtonFullSize src={characterIcon} alt={'Characters'}
+              <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Profile-Transparent.png"} alt={'Characters'}
                                     handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/characters'} />
-              <HeaderButtonFullSize src={teamSetupIcon} alt={'Team Setup'}
+              <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Team-Transparent.png"} alt={'Team Setup'}
                                     handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/teamSetup'} />
           </Box>
             { user ? <Box sx={{ flexGrow: 0 }}>
@@ -172,7 +166,7 @@ function Header() {
               ))}
             </Menu>
           </Box> : settings.map((setting : string) => (
-                <HeaderButtonFullSize src={teamSetupIcon} alt={setting}
+                <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Team-Transparent.png"} alt={setting}
                                       handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/' + setting.toLowerCase()} />
             ))}
 

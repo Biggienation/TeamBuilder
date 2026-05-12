@@ -152,23 +152,18 @@ export default function Chareters() {
                     </Box>
                     
                     <CustomTabPanel value={tabValue} index={0}>
-                        {error ?
-                            <CharacterTab characters={filteredCharacters} /> :
-                            <Typography color="error">{error}</Typography>
-                        }
+                            <CharacterTab characters={filteredCharacters} />
                     </CustomTabPanel>
 
                     {user && <CustomTabPanel value={tabValue} index={1}>
-                        { error ?
+
                             <CollectionTab
                             characters={filteredCharacters} 
                             selectedCards={selectedCards}
                             setSelectedCards={setSelectedCards}
-                            user={user}/> :
-                            <Typography color="error">{error}</Typography>
-                        }
-                        {"}"}
-                    </CustomTabPanel>}
+                            user={user}/>
+                    </CustomTabPanel>
+                    }
                 </Box>
             </Box>
         </Paper>

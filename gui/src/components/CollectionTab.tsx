@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, Grid, CardMedia, Box, Typography, Button } from '@mui/material';
-import GreySpacer from '@components/GreySpacer';
+import GreySpacer from '../components/GreySpacer';
 import { Character } from '../services/characterApi';
 import { userApi } from '../services/userApi';
 
@@ -27,6 +27,7 @@ export default function CollectionTab({ characters, selectedCards, setSelectedCa
     try {
       setSaving(true);
       await userApi.saveOwnedCharacters(user.id, selectedCards);
+      user.ownedCharacters = selectedCards; // Update local user data
       setError(null);
       alert('Characters saved successfully!');
     } catch (err) {

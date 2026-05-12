@@ -1,6 +1,6 @@
 import {Card, CardActionArea, CardContent, Typography, Box, CardMedia} from '@mui/material';
 import React from 'react';
-import GreySpacer from "@components/GreySpacer";
+import GreySpacer from "../components/GreySpacer";
 import {Team} from "../services/teamApi";
 
 const ChHeight = {xs: 80, sm: 100, md: 120, lg: 150}

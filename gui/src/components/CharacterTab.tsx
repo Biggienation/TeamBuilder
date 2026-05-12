@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardActionArea, CardContent, Grid, CardMedia, Box } from '@mui/material';
-import GreySpacer from '@components/GreySpacer';
+import GreySpacer from '../components/GreySpacer';
 import { Character } from '../services/characterApi';
 import { useStore } from '../hooks';
 import { selectRootPath } from '../reducers/selectors';
