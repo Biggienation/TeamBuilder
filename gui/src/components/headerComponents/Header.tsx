@@ -19,7 +19,7 @@ import {createTheme} from "@mui/material";
 import HeaderButtonFullSize from 'components/headerComponents/HeaderButtonFullSize';
 
 const authenticatedSettings = ['Settings', 'Logout'];
-const unauthenticatedSettings = ['Login', 'Register'];
+const unauthenticatedSettings = ['Login'];
 
 const theme = createTheme({
     palette: {
@@ -166,7 +166,7 @@ function Header() {
               ))}
             </Menu>
           </Box> : settings.map((setting : string) => (
-                <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Team-Transparent.png"} alt={setting}
+                <HeaderButtonFullSize src={"http://localhost:8080/images/icons/NamelessHonor-Transparent.png"} alt={setting}
                                       handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/' + setting.toLowerCase()} />
             ))}
 

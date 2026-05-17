@@ -31,8 +31,8 @@ const Login: React.FC = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <Container maxWidth="sm" sx={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Box sx={{ mt: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
         <Typography component="h1" variant="h5">
           Login
         </Typography>

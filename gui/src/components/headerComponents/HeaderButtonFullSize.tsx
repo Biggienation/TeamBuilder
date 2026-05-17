@@ -19,7 +19,7 @@ export default function HeaderButtonFullSize( { src, alt, nav, handleCloseNavMen
     sx={{ my: 2, color: 'white', display: 'block', backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '2px, solid, grey', marginRight: 1}}
 >
   <img src={src} alt={alt} style={{ height: 50, width: 50}}/>
-  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{'Characters'}</Typography>
+  <Typography sx={{ textAlign: 'center' }} fontSize={'small'}>{alt}</Typography>
 </Button>
     );
 }
