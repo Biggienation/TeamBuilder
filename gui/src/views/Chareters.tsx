@@ -6,6 +6,9 @@ import { selectUser } from "../reducers/selectors";
 import CharacterFilters from "components/CharacterFilters";
 import CharacterTab from "components/CharacterTab";
 import CollectionTab from "components/CollectionTab";
+import GreySpacer from "components/GreySpacer";
+import TierTable from "components/TierTable";
+import WarpRec from "components/WarpRec";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -108,7 +111,7 @@ export default function Chareters() {
     }
 
     return (
-        <Paper elevation={1} sx={{ padding: 2, height: '100dvh', backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
+        <Paper elevation={1} sx={{ padding: 2, height: '100dvh', backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
             {/* Main Content Layout */}
             <Box sx={{ display: 'flex', gap: 3 }}>
                 {/* Filter Controls */}
@@ -136,9 +139,10 @@ export default function Chareters() {
                             aria-label="character tabs"
                             sx={{
                                 '& .MuiTab-root': {
-                                    color: 'text.secondary',
+                                    color: 'white',
                                     '&.Mui-selected': {
                                         color: 'white',
+                                        backgroundColor: '#7E8C54',
                                     },
                                 },
                                 '& .MuiTabs-indicator': {
@@ -147,23 +151,33 @@ export default function Chareters() {
                             }}
                         >
                             <Tab label="Characters" {...a11yProps(0)} />
-                            <Tab label="Collection" {...a11yProps(1)} />
+                            {user && <Tab label="Collection" {...a11yProps(1)} />}
+                            {user && <Tab label="Warp Recommendations" {...a11yProps(2)}/>}
+                            <Tab label="Tier List" {...a11yProps(3)}/>
                         </Tabs>
+                        <GreySpacer />
                     </Box>
                     
                     <CustomTabPanel value={tabValue} index={0}>
                             <CharacterTab characters={filteredCharacters} />
                     </CustomTabPanel>
 
-                    {user && <CustomTabPanel value={tabValue} index={1}>
-
+                    <CustomTabPanel value={tabValue} index={1}>
                             <CollectionTab
                             characters={filteredCharacters} 
                             selectedCards={selectedCards}
                             setSelectedCards={setSelectedCards}
                             user={user}/>
                     </CustomTabPanel>
-                    }
+
+                    <CustomTabPanel value={tabValue} index={2}>
+                        <WarpRec/>
+                    </CustomTabPanel>
+
+                    <CustomTabPanel value={tabValue} index={3}>
+                        <TierTable/>
+                    </CustomTabPanel>
+
                 </Box>
             </Box>
         </Paper>

@@ -24,7 +24,12 @@ export default function CharacterTab({ characters }: CharacterTabProps) {
       <Grid container spacing={1} columns={5} sx={{ marginBottom: 10, paddingLeft: 10 }}>
         {characters.map((ch) => (
           <Grid key={ch.id} size={1}>
-            <Card sx={{ height: ChHeight, width: ChWidth, cursor: 'pointer' }}>
+            <Card sx={{ height: ChHeight, width: ChWidth, cursor: 'pointer' ,
+                backgroundColor: 'rgb(0, 0, 0, 0.4)',
+                color: 'white',
+                border: '2px solid grey',
+                borderRadius: '4px',
+                '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' }}}>
               <CardActionArea
                 onClick={() => handleCharacterClick(ch.id)}
                 sx={{

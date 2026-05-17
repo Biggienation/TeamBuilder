@@ -20,7 +20,9 @@ function Home() {
             <GreySpacer/>
             <ActiveBannerDisplay/>
             <GreySpacer/>
-            <TierTable/>
+            {
+                //<TierTable/>
+            }
         </Paper>
     );
 }

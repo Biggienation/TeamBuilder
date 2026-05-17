@@ -12,11 +12,11 @@ import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import { useStore } from '../../hooks';
 import { selectRootPath, selectUser } from '../../reducers/selectors';
-import AdbIcon from '@mui/icons-material/Adb';
 import {grey} from "@mui/material/colors";
 import {createTheme} from "@mui/material";
 
 import HeaderButtonFullSize from 'components/headerComponents/HeaderButtonFullSize';
+import LogoButton from 'components/headerComponents/LogoButton';
 
 const authenticatedSettings = ['Settings', 'Logout'];
 const unauthenticatedSettings = ['Login'];
@@ -76,26 +76,9 @@ function Header() {
     <AppBar position="static" color={'default'} sx={{backgroundColor: 'rgba(0, 0, 0, 0.9)',}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <div style={{ alignItems: "center", color: 'white', display: 'flex', flexDirection: "row", backgroundColor: 'rgba(0, 0, 0, 0.2)', border: '2px, solid, grey', marginRight: 9, padding: 28, borderRadius: 4}}>
-          <Typography
-              onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'white',
-              textDecoration: 'none',
-            }}
-          >
-            Team Builder
-          </Typography>
-                <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-            </div>
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
+            <LogoButton handleNav={handleNav} handleCloseNavMenu={handleCloseNavMenu} />
+          </Box>
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -170,7 +153,6 @@ function Header() {
                                       handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/' + setting.toLowerCase()} />
             ))}
 
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
               onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
             variant="h5"

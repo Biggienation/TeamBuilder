@@ -83,4 +83,6 @@ public class CharacterController {
         List<BasicCharacterModel> BasicCharacterModels = characterService.getAllBasicCharacters();
         return ResponseEntity.ok(BasicCharacterModels);
     }
+
+     
 }
