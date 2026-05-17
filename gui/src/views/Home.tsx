@@ -1,6 +1,6 @@
 import React from 'react';
 import {LogoBanner} from '../components/LogoBanner';
-import {ImageList} from '../components/ImageList';
+import {ImageDisplay} from '../components/ImageDisplay';
 import TierTable from "../components/TierTable";
 import GreySpacer from "../components/GreySpacer";
 import {Paper} from "@mui/material";
@@ -16,7 +16,7 @@ function Home() {
             <LogoBanner/>
             <GreySpacer/>
             <Spacer/>
-            <ImageList/>
+            <ImageDisplay/>
             <GreySpacer/>
             <ActiveBannerDisplay/>
             <GreySpacer/>
