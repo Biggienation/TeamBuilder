@@ -120,12 +120,18 @@ function Header() {
               <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Team-Transparent.png"} alt={'Team Setup'}
                                     handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/teamSetup'} />
           </Box>
-            { user ? <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            { user ? <Box sx={{ flexGrow: 0, alignItems: 'center',
+                gap: 1,
+                padding: '4px 8px',
+                borderRadius: '4px',
+                backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                border: '2px solid grey', }}>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ...(user ? { border: '2px solid #7E8C54' } : {}) }}>
                 <PersonIcon />
               </IconButton>
-            </Tooltip>
+                <Typography variant="body1" color="white">
+                    {user.username}
+                </Typography>
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"

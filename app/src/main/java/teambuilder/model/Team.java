@@ -22,4 +22,5 @@ public class Team {
     private String character2;
     private String character3;
     private String character4;
+    private int likes;
 }

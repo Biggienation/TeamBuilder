@@ -18,5 +18,65 @@
     "character2": "Hysilens",
     "character3": "Black Swan",
     "character4": "Huohuo"
-  }
+  },
+  {
+    "id": "3",
+    "name": "Phainon Generalist Team",
+    "categories": ["General"],
+    "description": "test",
+    "character1": "Phainon",
+    "character2": "Sunday",
+    "character3": "Cerydra",
+    "character4": "Huohuo"
+  },
+  {
+    "id": "4",
+    "name": "Evernight Remembrance Team",
+    "categories": ["General"],
+    "description": "test",
+    "character1": "Evernight",
+    "character2": "Castorice",
+    "character3": "Cyrene",
+    "character4": "Hyacine"
+  },
+  {
+  "id": "5",
+  "name": "Yao Guang Elation Team",
+  "categories": ["General"],
+  "description": "test",
+  "character1": "Silver Wolf Lv. 999",
+  "character2": "Sparxie",
+  "character3": "Yao Guang",
+  "character4": "Huohuo"
+ },
+  {
+    "id": "6",
+    "name": "Acheron Hypercarry Team",
+    "categories": ["General"],
+    "description": "test",
+    "character1": "Acheron",
+    "character2": "Jiaoqiu",
+    "character3": "Cipher",
+    "character4": "Aventurine"
+  },
+    {
+        "id": "7",
+        "name": "Sampo Generalist Team",
+        "categories": ["General"],
+        "description": "test",
+        "character1": "Sampo",
+        "character2": "Cerydra",
+        "character3": "Sunday",
+        "character4": "Hyacine"
+    },
+    {
+        "id": "8",
+        "name": "Feixiao Follow-Up Team",
+        "categories": ["Memory of Chaos"],
+        "description": "test",
+        "character1": "Feixiao",
+        "character2": "Ashveil",
+        "character3": "Robin",
+        "character4": "Permansor Terrae"
+    }
 ]

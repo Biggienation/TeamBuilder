@@ -3,23 +3,27 @@ import { Box, FormControl, Radio, RadioGroup, FormControlLabel, FormLabel, Butto
 
 const styles = {
   filterWrapper: {
-      // backgroundColor: '#F0F0F0',
+      backgroundColor: '#808080',
     flexShrink: 0,
-    paddingRight: 2,
+
     borderRight: '1px solid #ccc',
   },
     filterContainer: {
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
+        alignItems: 'center',
     },
     radioLabel: {
-        backgroundColor: '#F0F0F0',
+        backgroundColor: '#676767',
         display : 'flex',
         alignItems: 'center',
         padding: '4px 8px',
         radius: 4,
-        marginBottom: '1px'
+        marginBottom: '1px',
+        elevation: 5,
+        borderRadius: 4,
+        border : '1px solid #4B4B4C',
     },
     formLabel: {
         color: 'text.primary',
@@ -95,7 +99,7 @@ export default function CharacterFilters({
             {elementOptions.map((element) => (
                 <div key={element} style={styles.radioLabel}>
                     {element !== 'All' ? <img src={getElementIcon(element)} alt={element} style={styles.image}/> : <div style={styles.image}/>}
-              <FormControlLabel key={element} value={element} control={<Radio size="small" />} label={element} sx={styles.radioLabel}/>
+              <FormControlLabel key={element} value={element} control={<Radio size="small" />} label={element}/>
                 </div>
             ))}
           </RadioGroup>
@@ -110,7 +114,7 @@ export default function CharacterFilters({
             {roleOptions.map((role) => (
                 <div key={role} style={styles.radioLabel}>
                     <div style={styles.image}/>
-              <FormControlLabel key={role} value={role} control={<Radio size="small"/>} label={role} sx={styles.radioLabel} />
+              <FormControlLabel key={role} value={role} control={<Radio size="small"/>} label={role}/>
                 </div>
             ))}
           </RadioGroup>

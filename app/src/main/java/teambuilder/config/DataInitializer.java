@@ -71,7 +71,7 @@ public class DataInitializer {
 
     private FullCharacterModel[] loadCharactersFromJson() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        ClassPathResource resource = new ClassPathResource("data/Charaters.JSON");
+        ClassPathResource resource = new ClassPathResource("data/Character.JSON");
         return objectMapper.readValue(resource.getInputStream(), FullCharacterModel[].class);
     }
 

@@ -9,8 +9,8 @@ interface CharacterTabProps {
   characters: Character[];
 }
 
-const ChHeight = { xs: 80, sm: 100, md: 125, lg: 150 }
-const ChWidth = { xs: 70, sm: 90, md: 110, lg: 125 }
+
+const Square = { xs: 70, sm: 90, md: 110, lg: 125 }
 
 export default function CharacterTab({ characters }: CharacterTabProps) {
   const [, dispatch] = useStore(selectRootPath);
@@ -20,11 +20,12 @@ export default function CharacterTab({ characters }: CharacterTabProps) {
   };
 
   return (
-    <Box sx={{ padding: 2 }}>
-      <Grid container spacing={1} columns={5} sx={{ marginBottom: 10, paddingLeft: 10 }}>
+    <Box sx={{ padding: 2,}}>
+      <Grid container spacing={1} columns={7} sx={{ marginBottom: 10}}>
         {characters.map((ch) => (
           <Grid key={ch.id} size={1}>
-            <Card sx={{ height: ChHeight, width: ChWidth, cursor: 'pointer' ,
+            <Card sx={{ height: Square, width: Square, cursor: 'pointer' ,
+                position: 'relative',
                 backgroundColor: 'rgb(0, 0, 0, 0.4)',
                 color: 'white',
                 border: '2px solid grey',
@@ -34,19 +35,29 @@ export default function CharacterTab({ characters }: CharacterTabProps) {
                 onClick={() => handleCharacterClick(ch.id)}
                 sx={{
                   height: '100%',
+                  position: 'relative',
                   '&:hover': {
                     backgroundColor: 'action.hover',
                   },
                 }}
               >
                 <CardMedia
-                  sx={{ height: '70%', objectFit: 'contain' }}
+                  sx={{ height: '100%', objectFit: 'contain' }}
                   image={ch.imageUrl}
                 />
-                <CardContent>
+                <Box sx={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                  padding: '4px 8px',
+                  textAlign: 'center',
+                  fontSize: '0.875rem',
+                  fontWeight: 500,
+                }}>
                   {ch.name}
-                </CardContent>
-                <GreySpacer />
+                </Box>
               </CardActionArea>
             </Card>
           </Grid>

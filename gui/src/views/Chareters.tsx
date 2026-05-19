@@ -122,7 +122,7 @@ export default function Chareters() {
     }
 
     return (
-        <Paper elevation={1} sx={{ padding: 2, height: '100dvh', backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
+        <Paper elevation={1} sx={{height: '100dvh', backgroundColor: 'rgba(0, 0, 0, 0.8)', overflow: 'auto'}}>
             {/* Main Content Layout */}
             <Box sx={{ display: 'flex', gap: 3 }}>
                 {/* Filter Controls */}
@@ -142,7 +142,7 @@ export default function Chareters() {
                 </Box>
                 
                 {/* Tabs and Content */}
-                <Box sx={{ flex: 1 }}>
+                <Box sx={{ flex: 1, paddingTop: 2 }}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                         <Tabs 
                             value={tabValue} 
