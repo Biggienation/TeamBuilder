@@ -1,6 +1,6 @@
 import { Paper, CircularProgress, Typography, Tabs, Tab, Box } from "@mui/material";
 import React, { useEffect } from "react";
-import { getCharacters, Character } from "../services/characterApi";
+import {getCharacters, Character, getRecommendedCharacters} from "../services/characterApi";
 import { useStore } from "../hooks";
 import { selectUser } from "../reducers/selectors";
 import CharacterFilters from "components/CharacterFilters";
@@ -42,6 +42,7 @@ function a11yProps(index: number) {
 export default function Chareters() {
     const [selectedCards, setSelectedCards] = React.useState<string[]>([]);
     const [characters, setCharacters] = React.useState<Character[]>([]);
+    const [recommendedCharacters, setRecommendedCharacters] = React.useState<Character[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState<string | null>(null);
     const [user] = useStore(selectUser);
@@ -54,6 +55,7 @@ export default function Chareters() {
 
     useEffect(() => {
         fetchCharacters().then();
+        fetchRecommendedCharacters().then();
     }, []);
 
     // Initialize selectedCards with user's owned characters
@@ -78,6 +80,15 @@ export default function Chareters() {
             setLoading(false);
         }
     };
+
+    const fetchRecommendedCharacters = async () => {
+        try {
+            const data = await getRecommendedCharacters(user.id)
+            setRecommendedCharacters(data)
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
     // Filter characters based on selected filters
     const filteredCharacters = characters.filter((ch) => {
@@ -171,7 +182,7 @@ export default function Chareters() {
                     </CustomTabPanel>
 
                     <CustomTabPanel value={tabValue} index={2}>
-                        <WarpRec/>
+                        <WarpRec characters={recommendedCharacters} />
                     </CustomTabPanel>
 
                     <CustomTabPanel value={tabValue} index={3}>

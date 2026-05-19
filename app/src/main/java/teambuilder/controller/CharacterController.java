@@ -6,6 +6,7 @@ import teambuilder.service.CharacterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import teambuilder.service.RecommendationService;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public class CharacterController {
 
     @Autowired
     private CharacterService characterService;
+    @Autowired
+    private RecommendationService recommendationService;
 
     @GetMapping
     public ResponseEntity<List<FullCharacterModel>> getAllCharacters() {
@@ -82,6 +85,12 @@ public class CharacterController {
     public ResponseEntity<List<BasicCharacterModel>> getAllBasicCharacters() {
         List<BasicCharacterModel> BasicCharacterModels = characterService.getAllBasicCharacters();
         return ResponseEntity.ok(BasicCharacterModels);
+    }
+
+    @GetMapping("/recommendation/{id}")
+    public ResponseEntity<List<BasicCharacterModel>> getRecommendedCharacters(@PathVariable String id) {
+        List<BasicCharacterModel> recommendedCharacters = recommendationService.getRecommendedCharacters(id);;
+        return ResponseEntity.ok(recommendedCharacters);
     }
 
      

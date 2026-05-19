@@ -30,23 +30,23 @@ public class ItemRecommender {
         return ranked;
     }
 
-    public static void main(String[] args) {
-        // Example: items you own
-        Set<String> ownedItems = new HashSet<>(Arrays.asList("A", "B", "C"));
-
-        // Example: objects (each with 4 items)
-        List<Set<String>> objects = Arrays.asList(
-            new HashSet<>(Arrays.asList("A", "B", "D", "E")),   // weight 2 (A,B owned)
-            new HashSet<>(Arrays.asList("A", "C", "D", "F")),   // weight 2 (A,C owned)
-            new HashSet<>(Arrays.asList("X", "Y", "Z", "D")),   // weight 0 (none owned)
-            new HashSet<>(Arrays.asList("B", "C", "D", "G"))    // weight 2 (B,C owned)
-        );
-
-        List<Map.Entry<String, Double>> results = recommend(ownedItems, objects);
-
-        System.out.println("Missing items ranked by weighted score:");
-        for (Map.Entry<String, Double> entry : results) {
-            System.out.println("  " + entry.getKey() + " -> score: " + entry.getValue());
-        }
-    }
+//    public static void main(String[] args) {
+//        // Example: items you own
+//        Set<String> ownedItems = new HashSet<>(Arrays.asList("A", "B", "C"));
+//
+//        // Example: objects (each with 4 items)
+//        List<Set<String>> objects = Arrays.asList(
+//            new HashSet<>(Arrays.asList("A", "B", "D", "E")),   // weight 2 (A,B owned)
+//            new HashSet<>(Arrays.asList("A", "C", "D", "F")),   // weight 2 (A,C owned)
+//            new HashSet<>(Arrays.asList("X", "Y", "Z", "D")),   // weight 0 (none owned)
+//            new HashSet<>(Arrays.asList("B", "C", "D", "G"))    // weight 2 (B,C owned)
+//        );
+//
+//        List<Map.Entry<String, Double>> results = recommend(ownedItems, objects);
+//
+//        System.out.println("Missing items ranked by weighted score:");
+//        for (Map.Entry<String, Double> entry : results) {
+//            System.out.println("  " + entry.getKey() + " -> score: " + entry.getValue());
+//        }
+//    }
 }

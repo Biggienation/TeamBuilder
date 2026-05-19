@@ -130,3 +130,16 @@ export const searchCharactersByName = async (name: string): Promise<Character[]>
     throw error;
   }
 };
+
+export const getRecommendedCharacters = async (id: number): Promise<Character[]> => {
+    try {
+        const response = await fetch(`${API_URL}/characters/recommendation/${id}`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch recommended characters');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching recommended characters:', error);
+        throw error;
+    }
+};
