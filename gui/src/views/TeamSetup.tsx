@@ -36,7 +36,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function Builder() {
+export default function TeamSetup() {
     const [teams, setTeams] = React.useState<Team[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState<string | null>(null);
@@ -68,8 +68,13 @@ export default function Builder() {
 
     // Filter teams based on tab and buildable status
     const getFilteredTeams = (tabIndex: number) => {
-        // @ts-ignore
-        let filtered = teams
+        let filtered = teams.filter((team) => {
+            // If team has no categories, show it in all tabs (fallback)
+            if (!team.categories || team.categories.length === 0) {
+                return true;
+            }
+            return team.categories.includes(tabs[tabIndex]);
+        });
         if (filterBuildable && user?.ownedCharacters) {
             filtered = filtered.filter((team) => {
                 // Get character names from team
@@ -77,12 +82,13 @@ export default function Builder() {
                 const character2 = (team.character2 as any)?.name;
                 const character3 = (team.character3 as any)?.name;
                 const character4 = (team.character4 as any)?.name;
-                
+
                 const teamCharacters = [character1, character2, character3, character4].filter(Boolean);
                 
                 return teamCharacters.every((charName) => 
-                    user.ownedCharacters.includes(charName)
+                    user.ownedCharacters!.includes(charName)
                 );
+
             });
         }
         
@@ -106,8 +112,8 @@ export default function Builder() {
     }
 
     return (
-        <Paper elevation={1} sx={{ padding: 2, backgroundColor: 'rgba(0, 0, 0, 0.8)' }}>
-            <Box sx={{ marginBottom: 2 }}>
+        <Paper elevation={1} sx={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', height : '100%', overflow: 'auto' }}>
+            <Box sx={{ marginBottom: 2, backgroundColor: '#808080'}}>
                 <FormControlLabel
                     control={
                         <Switch 
@@ -115,7 +121,7 @@ export default function Builder() {
                             onChange={(e) => setFilterBuildable(e.target.checked)}
                             sx={{
                                 '& .MuiSwitch-switchBase.Mui-checked': {
-                                    color: '#7E8C54',
+                                    color: 'white',
                                 },
                                 '& .MuiSwitch-switchBase.Mui-checked + .MuiSwitch-track': {
                                     backgroundColor: '#7E8C54',
@@ -134,9 +140,10 @@ export default function Builder() {
                     aria-label="team tabs"
                     sx={{
                         '& .MuiTab-root': {
-                            color: 'text.secondary',
+                            color: 'white',
                             '&.Mui-selected': {
-                                color: '#7E8C54',
+                                color: 'white',
+                                backgroundColor: '#7E8C54',
                             },
                         },
                         '& .MuiTabs-indicator': {

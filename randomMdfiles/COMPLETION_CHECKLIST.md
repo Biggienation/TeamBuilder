@@ -14,7 +14,7 @@
 ## Frontend Integration ✅
 - [x] Created `characterApi.ts` (typed API service layer)
 - [x] Created `.env` (API URL configuration)
-- [x] Updated `Chareters.tsx` to fetch from API
+- [x] Updated `Characters.tsx` to fetch from API
 - [x] Added loading spinner during fetch
 - [x] Added error handling
 - [x] Converted to use API data with real fullCharacterModel IDs

@@ -27,7 +27,7 @@ const App  = () => {
         <header>
         </header>
         <main style={mainStyles}>
-          <Paper sx={{ width: 1500, maxWidth: 1500, height: '100dvh', backgroundImage: 'url("https://webstatic.hoyoverse.com/upload/op-public/2022/10/20/98abebb9cc9a28050df30d0debf0b210_1304921326218734874.png")', backgroundSize: 'cover'}} className="MainContent">
+          <Paper sx={{ width: 1500, maxWidth: 1500, height: '100%', backgroundImage: 'url("https://webstatic.hoyoverse.com/upload/op-public/2022/10/20/98abebb9cc9a28050df30d0debf0b210_1304921326218734874.png")', backgroundSize: 'cover'}} className="MainContent">
               <Header/>
               <GreySpacer/>
               <Router/>

@@ -1,8 +1,8 @@
 import { useStore } from './hooks';
 import Home from './views/Home';
-import Characters from './views/Chareters';
+import Characters from './views/Characters';
 import CharacterDetail from './views/CharacterDetail';
-import TeamSetup from './views/Builder';
+import TeamSetup from './views/TeamSetup';
 import Login from './views/Login';
 import Register from './views/Register';
 import Settings from './views/Settings';

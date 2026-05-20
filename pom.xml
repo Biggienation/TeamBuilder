@@ -11,7 +11,7 @@
     <packaging>jar</packaging>
 
     <name>TeamBuilder</name>
-    <description>Team Builder Application</description>
+    <description>Team TeamSetup Application</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

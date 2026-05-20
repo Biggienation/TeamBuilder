@@ -15,7 +15,7 @@
 ### Frontend (React + TypeScript)
 ✅ `characterApi.ts` - API service layer with typed interfaces
 ✅ `.env` - Environment configuration
-✅ `Chareters.tsx` - Updated to fetch from API with loading states
+✅ `Characters.tsx` - Updated to fetch from API with loading states
 
 ### DevOps
 ✅ `docker-compose.yml` - MongoDB container (already existed)

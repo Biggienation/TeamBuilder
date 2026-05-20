@@ -21,7 +21,7 @@ interface User {
 // Initial state
 const initialState: StoreState = {
   rootPath: '/home',
-  user: null,
+  user: localStorage.getItem('authUser') ? JSON.parse(localStorage.getItem('authUser')!) : null,
   token: localStorage.getItem('authToken') || null,
 };
 
@@ -31,6 +31,11 @@ function storeReducer(state: StoreState, action: any): StoreState {
     case 'SET_ROOT_PATH':
       return { ...state, rootPath: action.payload };
     case 'SET_USER':
+      if (action.payload) {
+        localStorage.setItem('authUser', JSON.stringify(action.payload));
+      } else {
+        localStorage.removeItem('authUser');
+      }
       return { ...state, user: action.payload };
     case 'SET_TOKEN':
       if (action.payload) {
@@ -41,6 +46,7 @@ function storeReducer(state: StoreState, action: any): StoreState {
       return { ...state, token: action.payload };
     case 'LOGOUT':
       localStorage.removeItem('authToken');
+      localStorage.removeItem('authUser');
       return { ...state, user: null, token: null };
     default:
       return state;

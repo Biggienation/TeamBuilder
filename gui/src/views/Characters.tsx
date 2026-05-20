@@ -1,14 +1,14 @@
-import { Paper, CircularProgress, Typography, Tabs, Tab, Box } from "@mui/material";
+import { Paper, CircularProgress, Tabs, Tab, Box } from "@mui/material";
 import React, { useEffect } from "react";
 import {getCharacters, Character, getRecommendedCharacters} from "../services/characterApi";
 import { useStore } from "../hooks";
 import { selectUser } from "../reducers/selectors";
-import CharacterFilters from "components/CharacterFilters";
 import CharacterTab from "components/CharacterTab";
 import CollectionTab from "components/CollectionTab";
 import GreySpacer from "components/GreySpacer";
 import TierTable from "components/TierTable";
 import WarpRec from "components/WarpRec";
+import CharacterFilters from "../components/CharacterFilters";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -39,7 +39,7 @@ function a11yProps(index: number) {
   };
 }
 
-export default function Chareters() {
+export default function Characters() {
     const [selectedCards, setSelectedCards] = React.useState<string[]>([]);
     const [characters, setCharacters] = React.useState<Character[]>([]);
     const [recommendedCharacters, setRecommendedCharacters] = React.useState<Character[]>([]);
