@@ -1,13 +1,5 @@
 import React from 'react';
-import {Button, Typography} from "@mui/material";
-
-interface HeaderButtonFullSizeProps {
-    src: string;
-    alt: string;
-    nav: string;
-    handleCloseNavMenu?: () => void;
-    handleNav?: (nav: string) => void;
-}
+import { Button, Typography } from "@mui/material";
 
 const styles = {
     button: {
@@ -18,32 +10,46 @@ const styles = {
         color: 'white',
         display: 'block',
         backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        border: '1px, solid, grey',
-        marginRight: 1
-    }
+        borderRadius: '0px',
+        border: '1px solid grey',
+        marginRight: 1,
+        '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' },
+    },
+    image: {
+        height: 50,
+        width: 50,
+    },
+    label: {
+        textAlign: 'center' as const,
+        fontSize: 'x-small',
+    },
 };
 
+interface HeaderButtonFullSizeProps {
+    src: string;
+    alt: string;
+    nav: string;
+    handleCloseNavMenu?: () => void;
+    handleNav?: (nav: string) => void;
+}
 
 export default function HeaderButtonFullSize({
                                                  src,
                                                  alt,
                                                  nav,
                                                  handleCloseNavMenu,
-                                                 handleNav
+                                                 handleNav,
                                              }: HeaderButtonFullSizeProps) {
-
-
     return (
         <Button
-            key={'Characters'}
             onClick={() => {
                 handleCloseNavMenu?.();
                 handleNav?.(nav);
             }}
             sx={styles.button}
         >
-            <img src={src} alt={alt} style={{height: 50, width: 50}}/>
-            <Typography sx={{textAlign: 'center'}} fontSize={'x-small'}>{alt}</Typography>
+            <img src={src} alt={alt} style={styles.image} />
+            <Typography sx={styles.label}>{alt}</Typography>
         </Button>
     );
 }

@@ -28,9 +28,11 @@ export default function CharacterTab({ characters }: CharacterTabProps) {
                 position: 'relative',
                 backgroundColor: 'rgb(0, 0, 0, 0.4)',
                 color: 'white',
-                border: '2px solid grey',
+                border: '1px solid grey',
                 borderRadius: '4px',
-                '&:hover': { backgroundColor: 'rgba(255, 255, 255, 0.1)' }}}>
+                '&:hover': {
+                    border: '1px solid white',
+                }}}>
               <CardActionArea
                 onClick={() => handleCharacterClick(ch.id)}
                 sx={{

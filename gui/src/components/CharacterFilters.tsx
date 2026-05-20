@@ -81,8 +81,7 @@ const styles = {
         display: 'flex',
         gap: 1,
         '&:hover': {
-            border: '3px solid white',
-            backgroundColor: '#white',
+            border: '2px solid white',
             color: '#222',
         },
     },

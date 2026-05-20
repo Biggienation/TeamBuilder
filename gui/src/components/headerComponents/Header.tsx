@@ -11,174 +11,237 @@ import MenuItem from '@mui/material/MenuItem';
 import PersonIcon from '@mui/icons-material/Person';
 import { useStore } from '../../hooks';
 import { selectRootPath, selectUser } from '../../reducers/selectors';
-import {grey} from "@mui/material/colors";
-import {createTheme} from "@mui/material";
-
 import HeaderButtonFullSize from 'components/headerComponents/HeaderButtonFullSize';
 import LogoButton from 'components/headerComponents/LogoButton';
 
 const authenticatedSettings = ['Settings', 'Logout'];
 const unauthenticatedSettings = ['Login'];
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: grey[900],
+const styles = {
+    appBar: {
+        backgroundColor: 'rgba(0, 0, 0, 0.9)',
+    },
+    desktopLogoBox: {
+        display: { xs: 'none', md: 'flex' },
+        gap: 2,
+    },
+    mobileMenuBox: {
+        flexGrow: 1,
+        display: { xs: 'flex', md: 'none' },
+    },
+    desktopNavBox: {
+        flexGrow: 1,
+        display: { xs: 'none', md: 'flex' },
+    },
+    userBox: {
+        flexGrow: 0,
+        display: 'flex',
+        alignItems: 'center',
+        gap: 1,
+    },
+    username: {
+        color: 'white',
+    },
+    personIcon: {
+        height: 70,
+        width: 70,
+    },
+    userIconButton: {
+        p: 0,
+        border: '1px solid white',
+    },
+    mobileTitle: {
+        mr: 2,
+        display: { xs: 'flex', md: 'none' },
+        flexGrow: 1,
+        fontFamily: 'monospace',
+        fontWeight: 700,
+        letterSpacing: '.3rem',
+        color: 'inherit',
+        textDecoration: 'none',
+        cursor: 'pointer',
+    },
+    userMenu: {
+        mt: '45px',
+        '& .MuiPaper-root': {
+            backgroundColor: 'rgba(30, 30, 30, 0.95)',
+            borderRadius: '12px',
+            padding: '8px',
+            minWidth: 220,
+        },
+        '& .MuiList-root': {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '6px',
+            padding: 0,
         },
     },
-});
+    menuItem: {
+        backgroundColor: '#fff',
+        borderRadius: '999px',
+        justifyContent: 'center',
+        padding: '10px 16px',
+        '&:hover': {
+            backgroundColor: '#f0f0f0',
+        },
+    },
+    menuItemText: {
+        textAlign: 'center' as const,
+        fontWeight: 500,
+        color: '#111',
+        fontSize: '0.95rem',
+    },
+};
 
-function Header() {
-  const [, dispatch] = useStore(selectRootPath);
-  const [user] = useStore(selectUser);
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+export default function Header() {
+    const [, dispatch] = useStore(selectRootPath);
+    const [user] = useStore(selectUser);
+    const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+    const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const handleNav = (path: string) => {
-    dispatch({ type: 'SET_ROOT_PATH', payload: path });
-  };
+    const handleNav = (path: string) => {
+        dispatch({ type: 'SET_ROOT_PATH', payload: path });
+    };
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
+    const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElNav(event.currentTarget);
+    };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+    const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorElUser(event.currentTarget);
+    };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
 
-  const handleLogout = () => {
-    dispatch({ type: 'LOGOUT' });
-    dispatch({ type: 'SET_ROOT_PATH', payload: '/home' });
-    handleCloseUserMenu();
-  };
+    const handleCloseUserMenu = () => {
+        setAnchorElUser(null);
+    };
 
-  const handleSettings = (setting: string) => {
-    if (setting === 'Logout') {
-      handleLogout();
-    } else {
-      handleNav('/' + setting.toLowerCase());
-      handleCloseUserMenu();
-    }
-  };
+    const handleLogout = () => {
+        dispatch({ type: 'LOGOUT' });
+        dispatch({ type: 'SET_ROOT_PATH', payload: '/home' });
+        handleCloseUserMenu();
+    };
 
-  const settings = user ? authenticatedSettings : unauthenticatedSettings;
+    const handleSettings = (setting: string) => {
+        if (setting === 'Logout') {
+            handleLogout();
+        } else {
+            handleNav('/' + setting.toLowerCase());
+            handleCloseUserMenu();
+        }
+    };
 
-    // @ts-ignore
+    const settings = user ? authenticatedSettings : unauthenticatedSettings;
+
     return (
-    <AppBar position="static" color={'default'} sx={{backgroundColor: 'rgba(0, 0, 0, 0.9)',}}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-            <LogoButton handleNav={handleNav} handleCloseNavMenu={handleCloseNavMenu} />
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-                <MenuItem key={'Characters'} onClick={() => { handleCloseNavMenu(); handleNav('/characters'); }}>
-                  <Typography sx={{ textAlign: 'center' }}>{'Characters'}</Typography>
-                </MenuItem>
-                <MenuItem key={'TeamSetup'} onClick={() => { handleCloseNavMenu(); handleNav('/teamSetup'); }}>
-                    <Typography sx={{ textAlign: 'center' }}>{'Team Setup'}</Typography>
-                </MenuItem>
-            </Menu>
-          </Box>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-              <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Profile-Transparent.png"} alt={'Characters'}
-                                    handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/characters'} />
-              <HeaderButtonFullSize src={"http://localhost:8080/images/icons/Team-Transparent.png"} alt={'Team Setup'}
-                                    handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/teamSetup'} />
-          </Box>
-            { user ? <Box sx={{ flexGrow: 0, alignItems: 'center',
-                gap: 1,
-                padding: '4px 8px',
-                borderRadius: '4px',
-                backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                border: '2px solid grey', }}>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, ...(user ? { border: '2px solid #7E8C54' } : {}) }}>
-                <PersonIcon />
-              </IconButton>
-                <Typography variant="body1" color="white">
-                    {user.username}
-                </Typography>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={() => handleSettings(setting)}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box> : settings.map((setting : string) => (
-                <HeaderButtonFullSize src={"http://localhost:8080/images/icons/NamelessHonor-Transparent.png"} alt={setting}
-                                      handleCloseNavMenu={handleCloseNavMenu} handleNav={handleNav} nav={'/' + setting.toLowerCase()} />
-            ))}
+        <AppBar position="static" color="default" sx={styles.appBar}>
+            <Container maxWidth="xl">
+                <Toolbar disableGutters>
 
-          <Typography
-              onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
-            variant="h5"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            Team Builder
-          </Typography>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
+                    <Box sx={styles.desktopLogoBox}>
+                        <LogoButton handleNav={handleNav} handleCloseNavMenu={handleCloseNavMenu} />
+                    </Box>
+
+                    <Box sx={styles.mobileMenuBox}>
+                        <IconButton
+                            size="large"
+                            aria-label="account of current user"
+                            aria-controls="menu-appbar"
+                            aria-haspopup="true"
+                            onClick={handleOpenNavMenu}
+                            color="inherit"
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Menu
+                            id="menu-appbar"
+                            anchorEl={anchorElNav}
+                            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+                            keepMounted
+                            transformOrigin={{ vertical: 'top', horizontal: 'left' }}
+                            open={Boolean(anchorElNav)}
+                            onClose={handleCloseNavMenu}
+                            sx={{ display: { xs: 'block', md: 'none' } }}
+                        >
+                            <MenuItem onClick={() => { handleCloseNavMenu(); handleNav('/characters'); }}>
+                                <Typography sx={styles.menuItemText}>Characters</Typography>
+                            </MenuItem>
+                            <MenuItem onClick={() => { handleCloseNavMenu(); handleNav('/teamSetup'); }}>
+                                <Typography sx={styles.menuItemText}>Team Setup</Typography>
+                            </MenuItem>
+                        </Menu>
+                    </Box>
+
+                    <Box sx={styles.desktopNavBox}>
+                        <HeaderButtonFullSize
+                            src="http://localhost:8080/images/icons/Profile-Transparent.png"
+                            alt="Characters"
+                            handleCloseNavMenu={handleCloseNavMenu}
+                            handleNav={handleNav}
+                            nav="/characters"
+                        />
+                        <HeaderButtonFullSize
+                            src="http://localhost:8080/images/icons/Team-Transparent.png"
+                            alt="Team Setup"
+                            handleCloseNavMenu={handleCloseNavMenu}
+                            handleNav={handleNav}
+                            nav="/teamSetup"
+                        />
+                    </Box>
+
+                    {user ? (
+                        <Box sx={styles.userBox}>
+                            <Typography sx={styles.username}>
+                                {user.username}
+                            </Typography>
+                            <IconButton onClick={handleOpenUserMenu} sx={styles.userIconButton}>
+                                <PersonIcon sx={styles.personIcon} />
+                            </IconButton>
+                            <Menu
+                                sx={styles.userMenu}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                                keepMounted
+                                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
+                            >
+                                {settings.map((setting) => (
+                                    <MenuItem key={setting} onClick={() => handleSettings(setting)} sx={styles.menuItem}>
+                                        <Typography sx={styles.menuItemText}>{setting}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box>
+                    ) : (
+                        settings.map((setting: string) => (
+                            <HeaderButtonFullSize
+                                key={setting}
+                                src="http://localhost:8080/images/icons/NamelessHonor-Transparent.png"
+                                alt={setting}
+                                handleCloseNavMenu={handleCloseNavMenu}
+                                handleNav={handleNav}
+                                nav={'/' + setting.toLowerCase()}
+                            />
+                        ))
+                    )}
+
+                    <Typography
+                        variant="h5"
+                        noWrap
+                        component="a"
+                        onClick={() => { handleCloseNavMenu(); handleNav('/home'); }}
+                        sx={styles.mobileTitle}
+                    >
+                        Team Builder
+                    </Typography>
+
+                </Toolbar>
+            </Container>
+        </AppBar>
+    );
 }
-export default Header;

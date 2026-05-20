@@ -44,12 +44,12 @@ const styles = {
         '& .MuiTab-root': {
             color: 'white',
             '&.Mui-selected': {
-                color: 'white',
-                backgroundColor: '#7E8C54',
+                color: 'black',
+                backgroundColor: '#f9c95e',
             },
         },
         '& .MuiTabs-indicator': {
-            backgroundColor: '#7E8C54',
+            backgroundColor: '#f9c95e',
         },
     },
 };
