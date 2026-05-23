@@ -102,7 +102,7 @@ interface CharacterFiltersProps {
 }
 
 function getPathIcon(path: string) {
-    return 'http://localhost:8080/images/path/' + path + '.webp';
+    return 'http://localhost:8080/images/path/' + path + '.jpg';
 }
 
 function getElementIcon(element: string) {
