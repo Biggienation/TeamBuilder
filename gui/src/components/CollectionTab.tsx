@@ -1,7 +1,6 @@
 import React from 'react';
-import { Card, CardActionArea, CardMedia, Box, Typography, Button, Grid } from '@mui/material';
+import { Card, CardActionArea, CardMedia, Box, Grid } from '@mui/material';
 import { Character } from '../services/characterApi';
-import { userApi } from '../services/userApi';
 
 const styles = {
     container: {
