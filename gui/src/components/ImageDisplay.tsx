@@ -13,43 +13,42 @@ export function ImageDisplay() {
     }
     const itemData = [
         {
-            img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-            title: 'Breakfast',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/1/16/Area_Duomension_City.png/revision/latest/scale-to-width-down/300?cb=20260206134133',
+            title: 'Duomension City',
             rows: 2,
             cols: 2,
         },
         {
-            img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-            title: 'Burger',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/0/04/Area_Graphia_Academy.png/revision/latest/scale-to-width-down/300?cb=20260214161112',
+            title: 'Graphia Academy',
         },
         {
-            img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-            title: 'Camera',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/8/8d/Area_Pearluxe_Tower.png/revision/latest/scale-to-width-down/300?cb=20260325103153',
+            title: 'Pearluxe Tower',
         },
         {
-            img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-            title: 'Coffee',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/c/cd/Area_Seafeld_City.png/revision/latest/scale-to-width-down/300?cb=20260426063421',
+            title: 'Seafeld City',
             cols: 2,
         },
         {
-            img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-            title: 'Hats',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/1/10/Area_Lookout_Cloud_Station.png/revision/latest/scale-to-width-down/300?cb=20260325105426',
+            title: 'Lookout Cloud Station',
             cols: 2,
         },
         {
-            img: 'https://images.unsplash.com/photo-1558642452-9d2a7deb7f62',
-            title: 'Honey',
-            author: '@arwinneil',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/3/3a/Area_Dovebrook_District.png/revision/latest/scale-to-width-down/300?cb=20260206134224',
+            title: 'Dovebrook District',
             rows: 2,
             cols: 2,
         },
         {
-            img: 'https://images.unsplash.com/photo-1516802273409-68526ee1bdd6',
-            title: 'Basketball',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/7/76/Area_Phantasmoon_Courtyard.png/revision/latest/scale-to-width-down/300?cb=20260213144741',
+            title: 'Phantasmoon Courtyard',
         },
         {
-            img: 'https://images.unsplash.com/photo-1518756131217-31eb79b20e8f',
-            title: 'Fern',
+            img: 'https://static.wikia.nocookie.net/houkai-star-rail/images/a/a9/Area_%22World%27s_End%22_Tavern.png/revision/latest/scale-to-width-down/300?cb=20260220114308',
+            title: '"World\'s End" Tavern',
         },
     ];
 
@@ -57,7 +56,7 @@ export function ImageDisplay() {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', height: 600, overflow: 'hidden', paddingTop: 5}}>
         <ImageList
-            sx={{ width: 500, height: 500 }}
+            sx={{ width: 1000, height: 500 }}
             variant="quilted"
             cols={4}
             rowHeight={121}

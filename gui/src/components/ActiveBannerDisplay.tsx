@@ -19,6 +19,14 @@ const styles = {
         height: 50,
         width: 50,
     },
+    imageContainer: {
+        maxWidth: '500',
+        maxHeight: '500',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 2,
+    }
 } as const;
 
 const ticketStyles = `
@@ -210,11 +218,29 @@ function Ticket({ entry, selected, onClick }: TicketProps) {
 }
 
 export default function ActiveBannerDisplay() {
-    const staticBanner: BannerEntry = {
+    const staticBanner: BannerEntry [] = [
+        {
         label: 'SilverWolfLv.999',
         imageSrc: 'http://localhost:8080/images/banner/SilverWolfLv.999.png',
         bannerSrc: 'http://localhost:8080/images/banner/SilverWolfLv.999.png',
-    };
+        },
+        {
+            label: 'Himeko • Nova',
+            imageSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/8/84/Character_Himeko_%E2%80%A2_Nova_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260519040101',
+            bannerSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/8/84/Character_Himeko_%E2%80%A2_Nova_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260519040101',
+        },
+        {
+            label: 'Rin Tohsaka',
+            imageSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/Character_Rin_Tohsaka_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260522123708',
+            bannerSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/4/4c/Character_Rin_Tohsaka_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260522123708',
+        },
+        {
+            label: 'Gilgamesh',
+            imageSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Gilgamesh_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260522123230',
+            bannerSrc: 'https://static.wikia.nocookie.net/houkai-star-rail/images/f/fc/Character_Gilgamesh_Introduction.png/revision/latest/scale-to-width-down/1000?cb=20260522123230',
+        }
+
+    ];
 
     const [activeBanners] = React.useState<string[] | null>(null);
 
@@ -224,12 +250,11 @@ export default function ActiveBannerDisplay() {
         bannerSrc: `http://localhost:8080/images/banners/${banner.toLowerCase()}.webp`,
     }));
 
-    const allEntries: BannerEntry[] = [staticBanner, ...dynamicEntries];
+    const allEntries: BannerEntry[] = [...staticBanner, ...dynamicEntries];
 
     const [selectedIndex, setSelectedIndex] = React.useState(0);
     const [fading, setFading] = React.useState(false);
-    const [displayedBanner, setDisplayedBanner] = React.useState(staticBanner.bannerSrc);
-
+    const [displayedBanner, setDisplayedBanner] = React.useState(staticBanner[0].bannerSrc);
     const handleSelect = (index: number) => {
         if (index === selectedIndex) return;
         setFading(true);
@@ -266,7 +291,10 @@ export default function ActiveBannerDisplay() {
                     ))}
                 </Box>
 
-                <Box className={`banner-preview${fading ? ' fading' : ''}`}>
+                <Box
+                    sx={styles.imageContainer}
+                    className={`banner-preview${fading ? ' fading' : ''}`}
+                >
                     <img src={displayedBanner} alt={'banner preview'} />
                 </Box>
             </Grid>
