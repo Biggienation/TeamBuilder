@@ -161,4 +161,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
         }
     }
+
+    @PostMapping("/{id}/profile-icon")
+    public ResponseEntity<?> updateProfileIcon(@PathVariable String id, @RequestBody String profileIcon) {
+        try {
+            UserResponse user = userService.updateProfileIcon(id, profileIcon);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            Map<String, String> error = new HashMap<>();
+            error.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+        }
+    }
 }

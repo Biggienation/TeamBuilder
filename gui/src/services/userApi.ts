@@ -8,6 +8,7 @@ export interface User {
   lastName?: string;
   active: boolean;
   ownedCharacters?: string[];
+  profileIcon?: string;
 }
 
 export interface LoginRequest {
@@ -103,6 +104,32 @@ export const userApi = {
     if (!response.ok) {
       const error = await response.json();
       throw new Error(error.error || 'Failed to save owned characters');
+    }
+    return response.json();
+  },
+
+    saveProfileIcon: async (userId: string, iconUrl: string): Promise<any> => {
+    const response = await fetch(`${API_BASE_URL}/users/${userId}/profile-icon`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ iconUrl }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to save profile icon');
+    }
+    return response.json();
+  },
+
+    changePassword: async (userId: string, newPassword: string): Promise<any> => {
+    const response = await fetch(`${API_BASE_URL}/users/${userId}/change-password`, {
+      method: 'POST',
+      headers: getAuthHeaders(),
+      body: JSON.stringify({ newPassword }),
+    });
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.error || 'Failed to change password');
     }
     return response.json();
   },

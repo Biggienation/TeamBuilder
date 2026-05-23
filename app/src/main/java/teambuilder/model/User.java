@@ -19,6 +19,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private String profileIcon;
     private List<String> ownedCharacters;
     private boolean active;
 }

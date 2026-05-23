@@ -146,6 +146,19 @@ public class UserService {
         return convertToResponse(updatedUser);
     }
 
+    public UserResponse updateProfileIcon(String userId, String profileIcon) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        if (userOptional.isEmpty()) {
+            throw new RuntimeException("User not found");
+        }
+
+        User user = userOptional.get();
+        user.setProfileIcon(profileIcon);
+        User updatedUser = userRepository.save(user);
+        return convertToResponse(updatedUser);
+    }
+
+
     /**
      * Convert User entity to UserResponse DTO
      */
@@ -158,4 +171,5 @@ public class UserService {
                 user.isActive()
         );
     }
+
 }

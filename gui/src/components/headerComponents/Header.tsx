@@ -48,7 +48,7 @@ const styles = {
     },
     userIconButton: {
         p: 0,
-        border: '1px solid white',
+        border: '1px solid #f9c95e',
     },
     mobileTitle: {
         mr: 2,
@@ -65,7 +65,7 @@ const styles = {
         mt: '45px',
         '& .MuiPaper-root': {
             backgroundColor: 'rgba(30, 30, 30, 0.95)',
-            borderRadius: '12px',
+            borderRadius: '0px',
             padding: '8px',
             minWidth: 220,
         },
@@ -198,7 +198,7 @@ export default function Header() {
                                 {user.username}
                             </Typography>
                             <IconButton onClick={handleOpenUserMenu} sx={styles.userIconButton}>
-                                <PersonIcon sx={styles.personIcon} />
+                                <img src={user.profileIcon} alt="Profile" style={styles.personIcon} />
                             </IconButton>
                             <Menu
                                 sx={styles.userMenu}
