@@ -80,6 +80,7 @@ const styles = {
         py: 1,
         display: 'flex',
         gap: 1,
+        border: '2px solid grey',
         '&:hover': {
             border: '2px solid white',
             color: '#222',

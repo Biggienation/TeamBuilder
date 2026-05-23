@@ -1,4 +1,4 @@
-import { Paper, CircularProgress, Tabs, Tab, Box } from "@mui/material";
+import { Paper, CircularProgress, Tabs, Tab, Box, Button } from "@mui/material";
 import React, { useEffect } from "react";
 import {getCharacters, Character, getRecommendedCharacters} from "../services/characterApi";
 import { useStore } from "../hooks";
@@ -9,12 +9,12 @@ import GreySpacer from "components/GreySpacer";
 import TierTable from "components/TierTable";
 import WarpRec from "components/WarpRec";
 import CharacterFilters from "../components/CharacterFilters";
+import {userApi} from "../services/userApi";
 
 const styles = {
     paper: {
-        height: '100dvh',
+        height: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.8)',
-        overflow: 'auto',
     },
     paperLoading: {
         padding: 2,
@@ -35,6 +35,8 @@ const styles = {
     contentBox: {
         flex: 1,
         paddingTop: 2,
+        overflow: 'auto',
+        height: '100%',
     },
     tabBorder: {
         borderBottom: 1,
@@ -52,6 +54,21 @@ const styles = {
             backgroundColor: '#f9c95e',
         },
     },
+    Button: {
+        backgroundColor: '#fff',
+        color: '#222',
+        borderColor: '#666',
+        borderRadius: '20px',
+        border: '2px solid grey',
+        textTransform: 'none' as const,
+
+        display: 'flex',
+        gap: 1,
+        '&:hover': {
+            border: '2px solid white',
+            color: '#222',
+        },
+    }
 };
 
 interface TabPanelProps {
@@ -88,7 +105,7 @@ export default function Characters() {
     const [recommendedCharacters, setRecommendedCharacters] = React.useState<Character[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState<string | null>(null);
-    const [user] = useStore(selectUser);
+    const [user, dispatch] = useStore(selectUser);
     const [tabValue, setTabValue] = React.useState(0);
 
     const [elementFilter, setElementFilter] = React.useState<string[]>([]);
@@ -152,6 +169,28 @@ export default function Characters() {
         setTabValue(newValue);
     };
 
+    const [saving, setSaving] = React.useState(false);
+
+    const handleSaveOwnedCharacters = async () => {
+        if (!user) {
+            setError('No user logged in');
+            return;
+        }
+        try {
+            setSaving(true);
+            await userApi.saveOwnedCharacters(user.id, selectedCards);
+            dispatch({ type: 'SET_USER', payload: { ...user, ownedCharacters: selectedCards } });
+            setError(null);
+            alert('Characters saved successfully!');
+        } catch (err) {
+            setError(err instanceof Error ? err.message : 'Failed to save owned characters');
+            console.error(err);
+        } finally {
+            setSaving(false);
+            fetchRecommendedCharacters().then();
+        }
+    };
+
     if (loading) {
         return (
             <Paper elevation={1} sx={styles.paperLoading}>
@@ -187,9 +226,21 @@ export default function Characters() {
                             sx={styles.tabs}
                         >
                             <Tab label="Characters" {...a11yProps(0)} />
-                            {user && <Tab label="Collection" {...a11yProps(1)} />}
-                            {user && <Tab label="Warp Recommendations" {...a11yProps(2)} />}
-                            <Tab label="Tier List" {...a11yProps(3)} />
+                            <Tab label="Tier List" {...a11yProps(1)} />
+                            {user && <Tab label="My Collection" {...a11yProps(2)} />}
+                            {user && <Tab label="Warp Recommendations" {...a11yProps(3)} />}
+                            
+                            <Box>
+                            {tabValue === 2 &&
+                                <Button
+                                    variant="contained"
+                                    onClick={handleSaveOwnedCharacters}
+                                    sx={styles.Button}
+                                    disabled={saving}
+                                >
+                                Save Characters
+                            </Button>}
+                            </Box>
                         </Tabs>
                         <GreySpacer />
                     </Box>
@@ -198,7 +249,7 @@ export default function Characters() {
                         <CharacterTab characters={filteredCharacters} />
                     </CustomTabPanel>
 
-                    <CustomTabPanel value={tabValue} index={1}>
+                    <CustomTabPanel value={tabValue} index={2}>
                         <CollectionTab
                             characters={filteredCharacters}
                             selectedCards={selectedCards}
@@ -207,11 +258,11 @@ export default function Characters() {
                         />
                     </CustomTabPanel>
 
-                    <CustomTabPanel value={tabValue} index={2}>
+                    <CustomTabPanel value={tabValue} index={3}>
                         <WarpRec characters={recommendedCharacters} />
                     </CustomTabPanel>
 
-                    <CustomTabPanel value={tabValue} index={3}>
+                    <CustomTabPanel value={tabValue} index={1}>
                         <TierTable />
                     </CustomTabPanel>
                 </Box>

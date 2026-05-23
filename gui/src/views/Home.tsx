@@ -20,9 +20,6 @@ function Home() {
             <GreySpacer/>
             <ActiveBannerDisplay/>
             <GreySpacer/>
-            {
-                //<TierTable/>
-            }
         </Paper>
     );
 }
