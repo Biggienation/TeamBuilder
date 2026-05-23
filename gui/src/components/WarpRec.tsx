@@ -50,7 +50,7 @@ export default function WarpRec({ characters }: WarpRecProps) {
                             </CardActionArea>
                         </Card>
                     </Grid>
-                ))}
+                )).slice(0, 5)}
 
             </Grid>
         </Box>
