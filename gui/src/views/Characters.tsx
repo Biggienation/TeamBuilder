@@ -61,6 +61,7 @@ const styles = {
         borderRadius: '20px',
         border: '2px solid grey',
         textTransform: 'none' as const,
+        marginRight: 5,
 
         display: 'flex',
         gap: 1,
@@ -68,7 +69,10 @@ const styles = {
             border: '2px solid white',
             color: '#222',
         },
-    }
+    },
+    tabSpacer: {
+        flexGrow: 1,
+    },
 };
 
 interface TabPanelProps {
@@ -229,7 +233,8 @@ export default function Characters() {
                             <Tab label="Tier List" {...a11yProps(1)} />
                             {user && <Tab label="My Collection" {...a11yProps(2)} />}
                             {user && <Tab label="Warp Recommendations" {...a11yProps(3)} />}
-                            
+
+                            <Box sx={styles.tabSpacer} />
                             <Box>
                             {tabValue === 2 &&
                                 <Button

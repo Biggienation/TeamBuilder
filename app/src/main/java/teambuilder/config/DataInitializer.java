@@ -41,6 +41,7 @@ public class DataInitializer {
             User adminUser = new User();
             adminUser.setUsername("admin");
             adminUser.setEmail("admin@test.com");
+            adminUser.setProfileIcon("Profile_Picture_Caelus_The_Writer.webp");
             adminUser.setPassword(passwordEncoder.encode("test"));
             adminUser.setActive(true);
             userRepository.save(adminUser);
