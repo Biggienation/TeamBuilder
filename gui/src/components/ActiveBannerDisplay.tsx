@@ -15,6 +15,13 @@ const styles = {
         gap: 1,
         padding: 2,
     },
+    ticketRow: {
+        paddingTop : 30,
+        display: 'flex',
+        flexDirection: 'column' as const,
+        alignItems: 'stretch',
+        padding: 2,
+    },
     icon: {
         height: 50,
         width: 50,
@@ -26,7 +33,12 @@ const styles = {
         justifyContent: 'center',
         alignItems: 'center',
         padding: 2,
-    }
+    },
+    menuItemText: {
+        textAlign: 'center' as const,
+        fontSize: 'x-small',
+        color: 'white',
+    },
 } as const;
 
 const ticketStyles = `
@@ -278,9 +290,10 @@ export default function ActiveBannerDisplay() {
                             src={'http://localhost:8080/images/icons/Warp-Transparent.png'}
                             alt={'WarpIcon'}
                         />
-                        <Typography sx={{ color: '#ccc' }}>Warp</Typography>
+                        <Typography sx={styles.menuItemText}>WARP</Typography>
                     </div>
 
+                    <div style={styles.ticketRow}>
                     {allEntries.map((entry, index) => (
                         <Ticket
                             key={entry.label}
@@ -289,6 +302,7 @@ export default function ActiveBannerDisplay() {
                             onClick={() => handleSelect(index)}
                         />
                     ))}
+                    </div>
                 </Box>
 
                 <Box
