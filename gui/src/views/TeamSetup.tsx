@@ -253,6 +253,8 @@ export default function TeamSetup() {
         }
     };
 
+
+
     const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabValue(newValue);
     };
@@ -305,8 +307,21 @@ export default function TeamSetup() {
             });
         }
 
-        return filtered.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
+        return filtered
+            .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+            .map(resolveTeamCharacters);
     };
+
+    const resolveCharacter = (name: string): Character | undefined =>
+        characters.find((ch) => ch.name === name);
+
+    const resolveTeamCharacters = (team: Team): Team => ({
+        ...team,
+        character1: resolveCharacter(team.character1 as unknown as string) ?? team.character1,
+        character2: resolveCharacter(team.character2 as unknown as string) ?? team.character2,
+        character3: resolveCharacter(team.character3 as unknown as string) ?? team.character3,
+        character4: resolveCharacter(team.character4 as unknown as string) ?? team.character4,
+    });
 
     const isFormValid = reportForm.name &&
         reportForm.character1 && reportForm.character2 &&
