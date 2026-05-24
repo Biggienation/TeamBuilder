@@ -39,6 +39,7 @@ public class UserService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setActive(true);
 
         User savedUser = userRepository.save(user);
         return convertToResponse(savedUser);

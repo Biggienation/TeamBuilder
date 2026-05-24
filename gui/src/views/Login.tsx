@@ -18,6 +18,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
+
         backgroundColor: '#f0f0f0',
         borderRadius: '0px 30px 0px 0px',
         width: '480px',
@@ -137,7 +138,7 @@ export default function Login() {
     };
 
     return (
-        <Container sx={styles.container}>
+        <Container maxWidth={false} sx={styles.container}>
             <Paper sx={styles.paper} elevation={0}>
 
                 <Typography component="h1" variant="h5" sx={{ mb: 3 }}>

@@ -1,26 +1,30 @@
 import React from 'react';
-import {LogoBanner} from '../components/LogoBanner';
-import {ImageDisplay} from '../components/ImageDisplay';
+import { LogoBanner } from '../components/LogoBanner';
+import { ImageDisplay } from '../components/ImageDisplay';
 import GreySpacer from "../components/GreySpacer";
-import {Paper} from "@mui/material";
+import { Paper, Box } from "@mui/material";
 import ActiveBannerDisplay from "../components/ActiveBannerDisplay";
 
-function Spacer() {
-    return <div style={{height: "10px"}}/>;
-}
+const styles = {
+    paper: {
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        height: '100dvh',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column' as const,
+        gap: 2,
+        padding: 2,
+    },
+};
 
-function Home() {
+export default function Home() {
     return (
-        <Paper sx={{backgroundColor: 'rgba(0, 0, 0, 0.8)'}}>
-            <LogoBanner/>
-            <GreySpacer/>
-            <Spacer/>
-            <ImageDisplay/>
-            <GreySpacer/>
-            <ActiveBannerDisplay/>
-            <GreySpacer/>
+        <Paper sx={styles.paper}>
+            <LogoBanner />
+            <GreySpacer />
+            <ImageDisplay />
+            <GreySpacer />
+            <ActiveBannerDisplay />
         </Paper>
     );
 }
-
-export default Home;

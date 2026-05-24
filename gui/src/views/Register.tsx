@@ -94,11 +94,12 @@ export default function Register() {
             setError(err.response?.data?.error || 'Registration failed');
         } finally {
             setLoading(false);
+            console.log(formData)
         }
     };
 
     return (
-        <Container sx={styles.container}>
+        <Container maxWidth={false} sx={styles.container}>
             <Paper sx={styles.paper} elevation={0}>
 
                 <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
