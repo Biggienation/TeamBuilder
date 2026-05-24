@@ -167,6 +167,7 @@ public class UserService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getProfileIcon(),
                 user.getOwnedCharacters(),
                 user.isActive()
         );

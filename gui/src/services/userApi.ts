@@ -108,11 +108,11 @@ export const userApi = {
     return response.json();
   },
 
-    saveProfileIcon: async (userId: string, iconUrl: string): Promise<any> => {
+    saveProfileIcon: async (userId: string, profileIcon: string): Promise<any> => {
     const response = await fetch(`${API_BASE_URL}/users/${userId}/profile-icon`, {
       method: 'POST',
       headers: getAuthHeaders(),
-      body: JSON.stringify({ iconUrl }),
+      body: profileIcon,
     });
     if (!response.ok) {
       const error = await response.json();

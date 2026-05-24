@@ -13,6 +13,7 @@ public class UserResponse {
     private String id;
     private String username;
     private String email;
+    private String profileIcon;
     private List<String> ownedCharacters;
     private boolean active;
 }
