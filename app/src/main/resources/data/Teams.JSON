@@ -2,7 +2,6 @@
   {
     "id": "1",
     "name": "The Herta Team",
-    "categories": ["General", "Memory of Chaos"],
     "description": "test",
     "character1": "The Herta",
     "character2": "Anaxa",
@@ -12,7 +11,6 @@
   {
     "id": "2",
     "name": "Kafka Team",
-    "categories": ["General"],
     "description": "test",
     "character1": "Kafka",
     "character2": "Hysilens",
@@ -32,7 +30,6 @@
   {
     "id": "4",
     "name": "Evernight Remembrance Team",
-    "categories": ["General"],
     "description": "test",
     "character1": "Evernight",
     "character2": "Castorice",
@@ -42,7 +39,6 @@
   {
   "id": "5",
   "name": "Yao Guang Elation Team",
-  "categories": ["General"],
   "description": "test",
   "character1": "Silver Wolf Lv. 999",
   "character2": "Sparxie",

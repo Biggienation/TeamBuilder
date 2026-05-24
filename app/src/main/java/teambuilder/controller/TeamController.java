@@ -18,14 +18,14 @@ public class TeamController {
     private TeamService teamService;
 
     @GetMapping
-    public ResponseEntity<List<CharacterTeamModel>> getAllTeams() {
-        List<CharacterTeamModel> teams = teamService.getAllTeams();
+    public ResponseEntity<List<General>> getAllTeams() {
+        List<General> teams = teamService.getAllTeams();
         return ResponseEntity.ok(teams);
     }
 
     @PutMapping("/{id}/report")
-    public ResponseEntity<General> reportTeam(@PathVariable String id, @RequestBody ReportTeamRequest request) {
-        General updated = teamService.reportTeam(id, request);
+    public ResponseEntity<ReportTeamRequest> reportTeam(@PathVariable String id, @RequestBody ReportTeamRequest request) {
+        ReportTeamRequest updated = teamService.reportTeam(id, request);
         return ResponseEntity.ok(updated);
     }
 

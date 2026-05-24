@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import teambuilder.repository.AnomalyArbitrationRepository;
 
 import java.util.List;
 
@@ -22,8 +23,8 @@ public class User {
     private String profileIcon;
     private List<String> ownedCharacters;
     private boolean active;
-    private General memoryOfChaos;
-    private General pureFiction;
-    private General apocalypse;
-    private General anomalyArbitrator;
+    private MemoryOfChaos memoryOfChaos;
+    private PureFiction pureFiction;
+    private ApocalypticShadow apocalypticShadow;
+    private AnomalyArbitration anomalyArbitrator;
 }
