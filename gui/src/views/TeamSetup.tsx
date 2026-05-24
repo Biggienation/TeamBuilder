@@ -5,7 +5,10 @@ import {
     InputLabel, SelectChangeEvent, TextField
 } from "@mui/material";
 import TeamCard from "components/TeamCard";
-import { getTeams, Team, reportTeam } from "../services/teamApi";
+import {
+    getTeams, getMemoryOfChaos, getPureFiction, getApocalypticShadow, getAnomalyArbitration,
+    Team, reportTeam
+} from "../services/teamApi";
 import { useStore } from "../hooks";
 import { selectUser } from "../reducers/selectors";
 import { Character, getCharacters } from "../services/characterApi";
@@ -186,7 +189,11 @@ function a11yProps(index: number) {
 }
 
 export default function TeamSetup() {
-    const [teams, setTeams] = React.useState<Team[]>([]);
+    const [generalTeams, setGeneralTeams] = React.useState<Team[]>([]);
+    const [memoryOfChaosTeams, setMemoryOfChaosTeams] = React.useState<Team[]>([]);
+    const [pureFictionTeams, setPureFictionTeams] = React.useState<Team[]>([]);
+    const [apocalypticShadowTeams, setApocalypticShadowTeams] = React.useState<Team[]>([]);
+    const [anomalyArbitrationTeams, setAnomalyArbitrationTeams] = React.useState<Team[]>([]);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState<string | null>(null);
     const [tabValue, setTabValue] = React.useState(0);
@@ -198,16 +205,26 @@ export default function TeamSetup() {
     const [reportForm, setReportForm] = React.useState<ReportForm>(emptyForm);
 
     useEffect(() => {
-        fetchTeams().then();
+        fetchAllTeams().then();
         fetchCharacters().then();
     }, []);
 
-    const fetchTeams = async () => {
+    const fetchAllTeams = async () => {
         try {
             setLoading(true);
             setError(null);
-            const data = await getTeams();
-            setTeams(data);
+            const [general, memoryOfChaos, pureFiction, apocalypticShadow, anomalyArbitration] = await Promise.all([
+                getTeams(),
+                getMemoryOfChaos(),
+                getPureFiction(),
+                getApocalypticShadow(),
+                getAnomalyArbitration(),
+            ]);
+            setGeneralTeams(general);
+            setMemoryOfChaosTeams(memoryOfChaos);
+            setPureFictionTeams(pureFiction);
+            setApocalypticShadowTeams(apocalypticShadow);
+            setAnomalyArbitrationTeams(anomalyArbitration);
         } catch (err) {
             setError('Failed to load teams');
             console.error(err);
@@ -222,6 +239,17 @@ export default function TeamSetup() {
             setCharacters(data);
         } catch (err) {
             console.error(err);
+        }
+    };
+
+    const getTeamsByTab = (tabIndex: number): Team[] => {
+        switch (tabIndex) {
+            case 0: return generalTeams;
+            case 1: return memoryOfChaosTeams;
+            case 2: return pureFictionTeams;
+            case 3: return apocalypticShadowTeams;
+            case 4: return anomalyArbitrationTeams;
+            default: return [];
         }
     };
 
@@ -254,6 +282,7 @@ export default function TeamSetup() {
             await reportTeam(user.id, { name, character1, character2, character3, character4, category });
             setReporting(false);
             setReportForm(emptyForm);
+            await fetchAllTeams();
         } catch (err) {
             console.error(err);
         } finally {
@@ -261,11 +290,8 @@ export default function TeamSetup() {
         }
     };
 
-    const getFilteredTeams = (tabIndex: number) => {
-        let filtered = teams.filter((team) => {
-            if (!team.categories || team.categories.length === 0) return true;
-            return team.categories.includes(tabs[tabIndex]);
-        });
+    const getFilteredTeams = (tabIndex: number): Team[] => {
+        let filtered = getTeamsByTab(tabIndex);
 
         if (filterBuildable && user?.ownedCharacters && user.ownedCharacters.length > 0) {
             filtered = filtered.filter((team) => {
@@ -322,8 +348,8 @@ export default function TeamSetup() {
     return (
         <Paper elevation={1} sx={styles.paper}>
 
-            {user && (<Box sx={styles.filterBar}>
-
+            {user && (
+                <Box sx={styles.filterBar}>
                     <FormControlLabel
                         control={
                             <Switch
@@ -334,11 +360,11 @@ export default function TeamSetup() {
                         }
                         label={<Typography sx={styles.filterLabel}>Show only buildable teams</Typography>}
                     />
-
-                <Button variant="outlined" onClick={() => setReporting((prev) => !prev)} sx={styles.reportButton}>
-                    {reporting ? 'Cancel' : 'Report a team'}
-                </Button>
-            </Box>)}
+                    <Button variant="outlined" onClick={() => setReporting((prev) => !prev)} sx={styles.reportButton}>
+                        {reporting ? 'Cancel' : 'Report a team'}
+                    </Button>
+                </Box>
+            )}
 
             {reporting && (
                 <Box sx={styles.reportBox}>

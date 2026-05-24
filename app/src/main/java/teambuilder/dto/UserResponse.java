@@ -15,5 +15,9 @@ public class UserResponse {
     private String email;
     private String profileIcon;
     private List<String> ownedCharacters;
+    private String memoryOfChaos;
+    private String pureFiction;
+    private String apocalypticShadow;
+    private String anomalyArbitraton;
     private boolean active;
 }

@@ -14,19 +14,33 @@ public class TeamService {
 
     @Autowired private GeneralRepository generalRepository;
     @Autowired private CharacterService characterService;
-    @Autowired private UserService userService;
+    @Autowired private UserRepository userRepository;
     @Autowired private ApocalypticShadowRepository apocalypticShadowRepository;
     @Autowired private AnomalyArbitrationRepository anomalyArbitrationRepository;
     @Autowired private PureFictionRepository pureFictionRepository;
     @Autowired private MemoryOfChaosRepository memoryOfChaosRepository;
-    @Autowired private UserRepository userRepository;
 
-    public List<General> getAllTeams() {
+    public List<General> getAllGeneral() {
         return generalRepository.findAll();
+    }
+    public List<MemoryOfChaos> getAllMemoryOfChaos() {
+        return memoryOfChaosRepository.findAll();
+    }
+
+    public List<PureFiction> getAllPureFiction() {
+        return pureFictionRepository.findAll();
+    }
+
+    public List<ApocalypticShadow> getAllApocalypticShadow() {
+        return apocalypticShadowRepository.findAll();
+    }
+
+    public List<AnomalyArbitration> getAllAnomalyArbitration() {
+        return anomalyArbitrationRepository.findAll();
     }
 
     public void reportTeam(String userId, ReportTeamRequest request) throws Exception {
-        User user = userService.getUserById(userId);
+        User user = userRepository.findById(userId).orElse(null);
         if (user == null) throw new RuntimeException("User not found");
 
         String category = request.category();
@@ -35,29 +49,29 @@ public class TeamService {
             case "Apocalyptic Shadow" -> handleReport(
                     request,
                     apocalypticShadowRepository,
-                    user.getApocalypticShadowVote(),
-                    (vote) -> user.setApocalypticShadowVote(vote),
+                    user.getApocalypticShadow(),
+                    user::setApocalypticShadow,
                     ApocalypticShadow::new
             );
             case "Anomaly Arbitration" -> handleReport(
                     request,
                     anomalyArbitrationRepository,
-                    user.getAnomalyArbitrationVote(),
-                    (vote) -> user.setAnomalyArbitrationVote(vote),
+                    user.getAnomalyArbitraton(),
+                    user::setAnomalyArbitraton,
                     AnomalyArbitration::new
             );
             case "Pure Fiction" -> handleReport(
                     request,
                     pureFictionRepository,
-                    user.getPureFictionVote(),
-                    (vote) -> user.setPureFictionVote(vote),
+                    user.getPureFiction(),
+                    user::setPureFiction,
                     PureFiction::new
             );
             case "Memory of Chaos" -> handleReport(
                     request,
                     memoryOfChaosRepository,
-                    user.getMemoryOfChaosVote(),
-                    (vote) -> user.setMemoryOfChaosVote(vote),
+                    user.getMemoryOfChaos(),
+                    user::setMemoryOfChaos,
                     MemoryOfChaos::new
             );
             default -> throw new RuntimeException("Unknown category: " + category);

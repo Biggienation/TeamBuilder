@@ -23,8 +23,8 @@ public class User {
     private String profileIcon;
     private List<String> ownedCharacters;
     private boolean active;
-    private MemoryOfChaos memoryOfChaos;
-    private PureFiction pureFiction;
-    private ApocalypticShadow apocalypticShadow;
-    private AnomalyArbitration anomalyArbitrator;
+    private String memoryOfChaos;
+    private String pureFiction;
+    private String apocalypticShadow;
+    private String anomalyArbitraton;
 }

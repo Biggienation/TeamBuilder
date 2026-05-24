@@ -43,6 +43,7 @@ const styles = {
         color: 'white',
     },
     personIcon: {
+        color: 'white',
         height: 70,
         width: 70,
     },
@@ -198,7 +199,7 @@ export default function Header() {
                                 {user.username}
                             </Typography>
                             <IconButton onClick={handleOpenUserMenu} sx={styles.userIconButton}>
-                                <img src={user.profileIcon} alt="Profile" style={styles.personIcon} />
+                                {user.profileIcon ? <img src={user.profileIcon} alt="Profile" style={styles.personIcon} /> : <PersonIcon sx={styles.personIcon}/>}
                             </IconButton>
                             <Menu
                                 sx={styles.userMenu}

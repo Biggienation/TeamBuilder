@@ -1,12 +1,13 @@
 package teambuilder.service;
 
-import teambuilder.model.User;
-import teambuilder.repository.UserRepository;
-import teambuilder.dto.UserRegistrationRequest;
-import teambuilder.dto.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import teambuilder.dto.UserRegistrationRequest;
+import teambuilder.dto.UserResponse;
+import teambuilder.model.User;
+import teambuilder.repository.UserRepository;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -169,8 +170,11 @@ public class UserService {
                 user.getEmail(),
                 user.getProfileIcon(),
                 user.getOwnedCharacters(),
+                user.getMemoryOfChaos(),
+                user.getPureFiction(),
+                user.getApocalypticShadow(),
+                user.getAnomalyArbitraton(),
                 user.isActive()
         );
     }
-
 }

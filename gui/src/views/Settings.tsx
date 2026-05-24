@@ -291,9 +291,6 @@ export default function Settings() {
                 {/* Endgame Content */}
                 <Box sx={styles.section}>
                     <Typography sx={styles.sectionTitle}>Endgame Content</Typography>
-                    <Typography sx={{ color: '#888', fontSize: '0.9rem' }}>
-                        Endgame content settings coming soon.
-                    </Typography>
                 </Box>
 
             </Box>

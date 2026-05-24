@@ -9,6 +9,7 @@ export interface User {
   active: boolean;
   ownedCharacters?: string[];
   profileIcon?: string;
+
 }
 
 export interface LoginRequest {
