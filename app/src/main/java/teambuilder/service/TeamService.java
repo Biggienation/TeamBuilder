@@ -13,7 +13,6 @@ import java.util.List;
 public class TeamService {
 
     @Autowired private GeneralRepository generalRepository;
-    @Autowired private CharacterService characterService;
     @Autowired private UserRepository userRepository;
     @Autowired private ApocalypticShadowRepository apocalypticShadowRepository;
     @Autowired private AnomalyArbitrationRepository anomalyArbitrationRepository;
@@ -87,15 +86,17 @@ public class TeamService {
             java.util.function.Consumer<String> setVote,
             java.util.function.Supplier<T> constructor
     ) {
-        // Remove +1 from previous vote if user already voted
         if (previousVoteId != null) {
             repository.findById(previousVoteId).ifPresent(prev -> {
                 prev.setScore(prev.getScore() - 1);
-                repository.save(prev);
+                if (prev.getScore() <= 0) {
+                    repository.delete(prev);
+                } else {
+                    repository.save(prev);
+                }
             });
         }
 
-        // Find existing team matching the 4 characters or create a new one
         T team = repository.findAll().stream()
                 .filter(t ->
                         t.getCharacter1().equals(request.character1()) &&
@@ -118,7 +119,6 @@ public class TeamService {
         team.setScore(team.getScore() + 1);
         T saved = repository.save(team);
 
-        // Update user's vote reference for this category
         setVote.accept(saved.getId());
     }
 }
