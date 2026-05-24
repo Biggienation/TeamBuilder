@@ -11,6 +11,7 @@ export interface Team {
     character2 : Character;
     character3 : Character;
     character4 : Character;
+    score: number;
 }
 
 export  const getTeams = async () : Promise<Team[]> => {
@@ -22,6 +23,25 @@ export  const getTeams = async () : Promise<Team[]> => {
         return await response.json();
     } catch (error) {
         console.error('Error fetching teams:', error);
+        throw error;
+    }
+}
+
+export const reportTeam = async (id: string, teamData: any) => {
+    try {
+        const response = await fetch(`${API_URL}/teams/${id}/report`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ...teamData}),
+        });
+        if (!response.ok) {
+            throw new Error('Failed to report team');
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('Error reporting team:', error);
         throw error;
     }
 }

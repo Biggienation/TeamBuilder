@@ -7,6 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
+import { Box, Typography } from '@mui/material';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
 import { useEffect, useState } from 'react';
 import { getCharacters } from '../services/characterApi';
@@ -36,25 +37,6 @@ const ROW_HEIGHT = 52;
 const HEADER_HEIGHT = 56;
 const MAX_TABLE_HEIGHT = 800;
 
-const BG = '#f0f0f0';
-const BG_HEADER = '#d8d8d8';
-const BORDER = '1px solid #ccc';
-
-const fetchCharacters = async (): Promise<Data[]> => {
-    try {
-        const data = await getCharacters();
-        return data.map((ch: any) => ({
-            name: ch.name,
-            tier: ch.tier,
-            rarity: ch.rarity,
-            element: ch.element,
-            path: ch.path,
-        }));
-    } catch {
-        return [];
-    }
-};
-
 const columns: ColumnData[] = [
     { width: 120, label: 'Name',    dataKey: 'name'    },
     { width: 80,  label: 'Tier',    dataKey: 'tier'    },
@@ -62,24 +44,6 @@ const columns: ColumnData[] = [
     { width: 100, label: 'Element', dataKey: 'element' },
     { width: 100, label: 'Path',    dataKey: 'path'    },
 ];
-
-const cellSx = {
-    color: '#222',
-    borderBottom: BORDER,
-    backgroundColor: BG,
-};
-
-const headCellSx = {
-    color: '#111',
-    borderBottom: BORDER,
-    backgroundColor: BG_HEADER,
-    fontWeight: 700,
-    letterSpacing: '0.04em',
-    '& .MuiTableSortLabel-root': { color: '#444' },
-    '& .MuiTableSortLabel-root:hover': { color: '#111' },
-    '& .MuiTableSortLabel-root.Mui-active': { color: '#111' },
-    '& .MuiTableSortLabel-icon': { color: '#444 !important' },
-};
 
 const styles = {
     outerWrapper: {
@@ -98,22 +62,62 @@ const styles = {
         overflow: 'hidden',
     },
     tableHeader: {
-        backgroundColor: BG_HEADER,
+        backgroundColor: '#d8d8d8',
         padding: '12px 16px',
-        borderBottom: BORDER,
+        borderBottom: '1px solid #ccc',
     },
     tableTitle: {
         color: '#111',
-        margin: 0,
-        fontSize: 18,
         fontWeight: 700,
+        fontSize: '1.1rem',
     },
     tablePaper: {
         width: '100%',
-        backgroundColor: BG,
+        backgroundColor: '#f0f0f0',
         backgroundImage: 'none',
         borderRadius: 0,
     },
+    scroller: {
+        backgroundColor: 'transparent',
+        backgroundImage: 'none',
+        boxShadow: 'none',
+        scrollbarWidth: 'none' as const,
+        '&::-webkit-scrollbar': { display: 'none' },
+    },
+    tableRow: {
+        '&:hover': { backgroundColor: '#e8e8e8' },
+    },
+    cellSx: {
+        color: '#222',
+        borderBottom: '1px solid #ccc',
+        backgroundColor: '#f0f0f0',
+    },
+    headCellSx: {
+        color: '#111',
+        borderBottom: '1px solid #ccc',
+        backgroundColor: '#d8d8d8',
+        fontWeight: 700,
+        letterSpacing: '0.04em',
+        '& .MuiTableSortLabel-root': { color: '#444' },
+        '& .MuiTableSortLabel-root:hover': { color: '#111' },
+        '& .MuiTableSortLabel-root.Mui-active': { color: '#111' },
+        '& .MuiTableSortLabel-icon': { color: '#444 !important' },
+    },
+};
+
+const fetchCharacters = async (): Promise<Data[]> => {
+    try {
+        const data = await getCharacters();
+        return data.map((ch: any) => ({
+            name: ch.name,
+            tier: ch.tier,
+            rarity: ch.rarity,
+            element: ch.element,
+            path: ch.path,
+        }));
+    } catch {
+        return [];
+    }
 };
 
 function compareRows(a: Data, b: Data, orderBy: keyof Data): number {
@@ -157,18 +161,7 @@ export default function TierTable() {
 
     const VirtuosoTableComponents: TableComponents<Data> = {
         Scroller: React.forwardRef<HTMLDivElement>((props, ref) => (
-            <TableContainer
-                component={Paper}
-                {...props}
-                ref={ref}
-                sx={{
-                    backgroundColor: 'transparent',
-                    backgroundImage: 'none',
-                    boxShadow: 'none',
-                    scrollbarWidth: 'none',
-                    '&::-webkit-scrollbar': { display: 'none' },
-                }}
-            />
+            <TableContainer component={Paper} {...props} ref={ref} sx={styles.scroller} />
         )),
         Table: (props) => (
             <Table {...props} sx={{ borderCollapse: 'separate', tableLayout: 'fixed' }} />
@@ -177,10 +170,7 @@ export default function TierTable() {
             <TableHead {...props} ref={ref} />
         )),
         TableRow: ({ item: _item, ...props }) => (
-            <TableRow
-                {...props}
-                sx={{ '&:hover': { backgroundColor: '#e8e8e8' } }}
-            />
+            <TableRow {...props} sx={styles.tableRow} />
         ),
         TableBody: React.forwardRef<HTMLTableSectionElement>((props, ref) => (
             <TableBody {...props} ref={ref} />
@@ -196,7 +186,7 @@ export default function TierTable() {
                         variant="head"
                         align={col.numeric ? 'right' : 'left'}
                         style={{ width: col.width }}
-                        sx={headCellSx}
+                        sx={styles.headCellSx}
                         sortDirection={orderBy === col.dataKey ? order : false}
                     >
                         <TableSortLabel
@@ -216,7 +206,7 @@ export default function TierTable() {
         return (
             <React.Fragment>
                 {columns.map((col) => (
-                    <TableCell key={col.dataKey} align={col.numeric ? 'right' : 'left'} sx={cellSx}>
+                    <TableCell key={col.dataKey} align={col.numeric ? 'right' : 'left'} sx={styles.cellSx}>
                         {row[col.dataKey]}
                     </TableCell>
                 ))}
@@ -225,12 +215,12 @@ export default function TierTable() {
     }
 
     return (
-        <div style={styles.outerWrapper}>
-            <div style={styles.container}>
-                <div style={styles.tableHeader}>
-                    <h2 style={styles.tableTitle}>Tier List</h2>
-                </div>
-                <Paper elevation={0} style={styles.tablePaper}>
+        <Box sx={styles.outerWrapper}>
+            <Box sx={styles.container}>
+                <Box sx={styles.tableHeader}>
+                    <Typography sx={styles.tableTitle}>Tier List</Typography>
+                </Box>
+                <Paper elevation={0} sx={styles.tablePaper}>
                     <TableVirtuoso
                         data={sorted}
                         style={{ height: tableHeight }}
@@ -239,7 +229,7 @@ export default function TierTable() {
                         itemContent={rowContent}
                     />
                 </Paper>
-            </div>
-        </div>
+            </Box>
+        </Box>
     );
 }

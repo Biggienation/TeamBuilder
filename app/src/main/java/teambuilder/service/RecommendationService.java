@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import teambuilder.model.BasicCharacterModel;
 import teambuilder.repository.CharacterRepository;
-import teambuilder.repository.TeamRepository;
+import teambuilder.repository.GeneralRepository;
 import teambuilder.repository.UserRepository;
 import teambuilder.util.ItemRecommender;
 
@@ -17,7 +17,7 @@ public class RecommendationService {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    TeamRepository teamRepository;
+    GeneralRepository teamRepository;
 
 
     public List<BasicCharacterModel> getRecommendedCharacters(String id) {

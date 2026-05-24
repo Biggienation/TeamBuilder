@@ -2,11 +2,9 @@ package teambuilder.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import teambuilder.model.CharacterTeamModel;
+import org.springframework.web.bind.annotation.*;
+import teambuilder.dto.ReportTeamRequest;
+import teambuilder.model.General;
 import teambuilder.service.TeamService;
 
 import java.util.List;
@@ -23,6 +21,12 @@ public class TeamController {
     public ResponseEntity<List<CharacterTeamModel>> getAllTeams() {
         List<CharacterTeamModel> teams = teamService.getAllTeams();
         return ResponseEntity.ok(teams);
+    }
+
+    @PutMapping("/{id}/report")
+    public ResponseEntity<General> reportTeam(@PathVariable String id, @RequestBody ReportTeamRequest request) {
+        General updated = teamService.reportTeam(id, request);
+        return ResponseEntity.ok(updated);
     }
 
 }

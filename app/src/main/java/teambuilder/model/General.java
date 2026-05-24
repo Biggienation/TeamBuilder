@@ -2,25 +2,22 @@ package teambuilder.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.ArrayList;
-
-@Document(collection = "teams")
+@Document(collection = "general")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-public class Team {
+public class General {
+    @Id
     private String id;
     private String name;
-    private ArrayList<String> categories;
     private String description;
     private String character1;
     private String character2;
     private String character3;
     private String character4;
-    private int likes;
+    private int score;
 }

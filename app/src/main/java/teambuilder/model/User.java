@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Document(collection = "users")
@@ -22,4 +22,8 @@ public class User {
     private String profileIcon;
     private List<String> ownedCharacters;
     private boolean active;
+    private General memoryOfChaos;
+    private General pureFiction;
+    private General apocalypse;
+    private General anomalyArbitrator;
 }

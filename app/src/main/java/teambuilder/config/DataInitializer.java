@@ -1,7 +1,6 @@
 package teambuilder.config;
 
 import teambuilder.model.FullCharacterModel;
-import teambuilder.model.Team;
 import teambuilder.model.User;
 import teambuilder.repository.CharacterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import teambuilder.repository.TeamRepository;
+import teambuilder.repository.GeneralRepository;
 import teambuilder.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -23,7 +22,7 @@ public class DataInitializer {
     @Autowired
     private CharacterRepository characterRepository;
     @Autowired
-    private TeamRepository teamRepository;
+    private GeneralRepository teamRepository;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -62,7 +61,7 @@ public class DataInitializer {
     private void InitializeTeams() {
         if (teamRepository.count() == 0) {
             try {
-                Team[] teams = loadTeamsFromJson();
+                teambuilder.model.General[] teams = loadTeamsFromJson();
                 teamRepository.saveAll(Arrays.asList(teams));
             } catch (IOException e) {
                 System.err.println("Error loading teams from JSON: " + e.getMessage());
@@ -76,9 +75,9 @@ public class DataInitializer {
         return objectMapper.readValue(resource.getInputStream(), FullCharacterModel[].class);
     }
 
-    private Team[] loadTeamsFromJson() throws IOException {
+    private teambuilder.model.General[] loadTeamsFromJson() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         ClassPathResource resource = new ClassPathResource("data/Teams.JSON");
-        return objectMapper.readValue(resource.getInputStream(), Team[].class);
+        return objectMapper.readValue(resource.getInputStream(), teambuilder.model.General[].class);
     }
 }

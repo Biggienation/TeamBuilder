@@ -2,8 +2,8 @@ package teambuilder.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import teambuilder.model.CharacterTeamModel;
-import teambuilder.repository.TeamRepository;
+import teambuilder.model.User;
+import teambuilder.repository.GeneralRepository;
 
 import java.util.List;
 
@@ -11,19 +11,25 @@ import java.util.List;
 public class TeamService {
 
     @Autowired
-    private TeamRepository teamRepository;
+    private GeneralRepository teamRepository;
     @Autowired
     private CharacterService characterService;
+    @Autowired
+    private UserService userServiceService;
 
-    public List<CharacterTeamModel> getAllTeams() {
-        return teamRepository.findAll().stream().map(team -> new CharacterTeamModel(
-                team.getId(),
-                team.getName(),
-                team.getDescription(),
-                characterService.findBasicCharacterByName(team.getCharacter1()),
-                characterService.findBasicCharacterByName(team.getCharacter2()),
-                characterService.findBasicCharacterByName(team.getCharacter3()),
-                characterService.findBasicCharacterByName(team.getCharacter4())
-        )).toList();
+    public List<teambuilder.model.General> getAllTeams() {{
+        return teamRepository.findAll();
+    }
+
+    public teambuilder.model.General reportTeam(String id, ReportTeamRequest request) {
+       User user = userServiceService.getUserById(id);
+         if (user == null) {
+              throw new RuntimeException("User not found");
+         }
+         String category = request.category();
+         // if team alrady exists then add +1 to the score
+
+
+
     }
 }
